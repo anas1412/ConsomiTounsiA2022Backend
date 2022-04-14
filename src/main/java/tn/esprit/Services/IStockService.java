@@ -11,7 +11,7 @@ public interface IStockService {
 
 	void deleteStock (Long id);
 
-	stock updateStock (stock s, Long id);
+	stock updateStock (stock s);
 
 	stock retrieveStock (Long id);	
 }

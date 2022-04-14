@@ -37,15 +37,20 @@ public class stockServiceImpl implements IStockService{
 	}
 
 	@Override
-	public stock updateStock(stock c,Long id) {
-		StockRepo.save(c);
-		return c;
-	}
-
-	@Override
 	public stock retrieveStock(Long id) {
 		
 		return StockRepo.findById(id).orElse(null);
+	}
+
+	@Override
+	public stock updateStock(stock s) {
+		stock stock = StockRepo.findById(s.getIdStock()).get();
+		stock.setLibelleStock(s.getLibelleStock());
+		stock.setQuantite(s.getQuantite());
+		stock.setSupplier_name(s.getSupplier_name());
+		stock.setSupplier_mail(s.getSupplier_mail());
+	
+		return StockRepo.save(stock);
 	}
 			
 }

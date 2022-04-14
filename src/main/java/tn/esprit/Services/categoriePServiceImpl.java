@@ -32,7 +32,10 @@ public class categoriePServiceImpl implements ICategorieServices {
 
 	@Override
 	public categorieP updateCategorieProduit(categorieP cp) {
-		// TODO Auto-generated method stub
+		categorieP categorie = CategorieRepo.findById(cp.getIdCategorieP()).get();
+		categorie.setCodeProduit(cp.getCodeProduit());
+		categorie.setLibelleCategorieProduit(cp.getLibelleCategorieProduit());
+		
 		CategorieRepo.save(cp);
 		return cp;
 	}
