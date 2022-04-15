@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.Entities.facture;
+import tn.esprit.Entities.produit;
 import tn.esprit.Entities.Livraison;
 import tn.esprit.Entities.Livreur;
 
@@ -29,10 +30,25 @@ public class LivraisonServiceImp implements ILivraisonService{
 		return (List<Livraison>) LivraisonRepo.findAll();
 	}
 
-	@Override
+/*	@Override
 	public Livraison updateLivraison(Livraison liv, Long idFacture, Long idLivreur) {
 		// TODO Auto-generated method stub
 		return LivraisonRepo.save(liv);
+	}*/
+	
+	@Override
+	public Livraison updateLivraison(Livraison liv) {
+		Livraison livraison = LivraisonRepo.findById(liv.getIdLivraison()).get();
+		
+		livraison.setLivreur(liv.getLivreur());
+		livraison.setIdLivraison(liv.getIdLivraison());
+		livraison.setAdresse(liv.getAdresse());
+		livraison.setDateLiv(liv.getDateLiv());
+		livraison.setFacture(liv.getFacture());
+		livraison.setFrais(liv.getFrais());
+		LivraisonRepo.save(liv);
+		return liv;
+				
 	}
 	
 

@@ -6,12 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import tn.esprit.Entities.Livraison;
+import tn.esprit.Entities.produit;
 import tn.esprit.Services.ILivraisonService;
 
 @RestController
@@ -42,14 +46,14 @@ public class LivraisonRestController {
 	return livraison;
 	}
 
-	@PostMapping("/update-Livraison/{Facture-id}/{Livreur-id}")
+	
+	@PutMapping("/modify-Livraison")
 	@ResponseBody
-	public Livraison updateLivraison(@RequestBody Livraison liv,@PathVariable("Facture-id") Long idFacture,@PathVariable("Livreur-id")Long idLivreur) {
-	Livraison livraison = LivraisonService.updateLivraison(liv,idFacture,idLivreur);
+	public Livraison updateLivraison(@RequestBody Livraison liv)
+	{	
+		Livraison livraison = LivraisonService.updateLivraison(liv);
 	return livraison;
 	}
-
-
 	}
 
 

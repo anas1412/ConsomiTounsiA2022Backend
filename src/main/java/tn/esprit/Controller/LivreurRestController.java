@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import tn.esprit.Entities.Livraison;
 import tn.esprit.Entities.Livreur;
 import tn.esprit.Services.ILivreurService;
 
@@ -56,8 +57,10 @@ public class LivreurRestController {
 	//http://localhost:8080/SpringMVC/Livreur/modify-Livreur
 	@PutMapping("/modify-Livreur")
 	@ResponseBody
-	public Livreur modifyLivreur(@RequestBody Livreur Livreur) {
-	return LivreurService.updateLivreur(Livreur);
+	public Livreur updateLivreur(@RequestBody Livreur l)
+	{	
+		Livreur livreur = LivreurService.updateLivreur(l);
+	return livreur;
 	}
 
 }

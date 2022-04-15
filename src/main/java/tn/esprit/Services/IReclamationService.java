@@ -11,7 +11,7 @@ public interface IReclamationService {
 
 	Reclamation addReclamation(Reclamation rec,Long id,Long idLivraison);
 
-	Reclamation updateReclamation(Reclamation rec,Long id,Long idLivraison);
+	Reclamation updateReclamation(Reclamation rec);
 
 	Reclamation retrieveReclamation(Long idReclamation);
 

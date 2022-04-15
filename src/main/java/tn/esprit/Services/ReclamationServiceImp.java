@@ -10,6 +10,7 @@ import tn.esprit.Entities.Reclamation;
 import tn.esprit.Repository.ReclamationRepository;
 import tn.esprit.Repository.UserRepository;
 import tn.esprit.Entities.User;
+import tn.esprit.Entities.produit;
 import tn.esprit.Entities.Livraison;
 import tn.esprit.Repository.LivraisonRepository;
 @Service
@@ -42,12 +43,17 @@ public class ReclamationServiceImp implements IReclamationService{
 	}
 
 	@Override
-	public Reclamation updateReclamation(Reclamation rec,Long id,Long idLivraison) {
+	public Reclamation updateReclamation(Reclamation rec) {
 		// TODO Auto-generated method stub
-		User u = UserRepo.findById(id).orElse(null);
-		Livraison livraison = LivraisonRepo.findById(idLivraison).orElse(null);
-		rec.setUser(u);
-		rec.setLivraison(livraison);
+		Reclamation reclamation = ReclamationRepo.findById(rec.getIdReclamation()).get();
+		
+		reclamation.getIdReclamation();
+		reclamation.getDateRec();
+		reclamation.getDescription();
+		reclamation.getType();
+		reclamation.getUser();
+		reclamation.getLivraison();
+		
 		ReclamationRepo.save(rec);
 		return rec;
 	}

@@ -11,7 +11,7 @@ public interface ILivraisonService {
 
 	Livraison addLivraison (Livraison liv, Long idFacture, Long idLivreur);
 
-	Livraison updateLivraison (Livraison liv, Long idFacture, Long idLivreur);
+	Livraison updateLivraison (Livraison liv);
 	
 	Livraison retrieveLivraison(Long idLivraison);
 

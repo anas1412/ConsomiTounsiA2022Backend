@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tn.esprit.Entities.Livraison;
 import tn.esprit.Entities.Livreur;
+import tn.esprit.Entities.produit;
 import tn.esprit.Repository.LivreurRepository;
 
 
@@ -33,6 +35,15 @@ public class LivreurServiceImp implements ILivreurService {
 	@Override
 	public Livreur updateLivreur(Livreur l) {
 		// TODO Auto-generated method stub
+		Livreur livreur = LivreurRepo.findById(l.getIdLivreur()).get();
+		livreur.getIdLivreur();
+		livreur.getDateAjout();
+		livreur.getNom();
+		livreur.getPrenom();
+		livreur.getTelephone();
+		livreur.getVille();
+		livreur.getNbLivraison();
+		livreur.getStatutCompte();
 		LivreurRepo.save(l);
 		return l;
 	}
