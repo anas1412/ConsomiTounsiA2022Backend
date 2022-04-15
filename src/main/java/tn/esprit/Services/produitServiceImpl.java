@@ -36,14 +36,17 @@ public class produitServiceImpl implements IProduitServices {
 	
 
 	@Override
-	public produit updateProduit(produit p, Long id, Long idCategorieProduit, Long idStock) {
+	public produit updateProduit(produit p) {
+		produit produit = produitrepo.findById(p.getIdProduit()).get();
+
 		
-		stock stock = stockRepository.findById(idStock).orElse(null);
-		categorieP cp = caterepo.findById(idCategorieProduit).orElse(null);
-		produitrepo.findById(id).orElse(null);
-		p.setCategorieP(cp);
-		p.setStock(stock);
-		p.setDateCreation(new Date());
+		produit.setCodeProduit(p.getCodeProduit());
+		produit.setLibelleProduit(p.getLibelleProduit());
+		produit.setDescription(p.getDescription());
+		produit.setImage(p.getImage());
+		produit.setPrix(p.getPrix());
+		
+		//p.setDateCreation(new Date());
 		produitrepo.save(p);
 	    return p;
 		
