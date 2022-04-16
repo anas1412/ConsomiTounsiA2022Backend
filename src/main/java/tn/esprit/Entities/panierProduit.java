@@ -36,6 +36,9 @@ public class panierProduit implements Serializable {
 	
 	@ManyToOne
 	private panier panier;
+	
+	@ManyToOne
+	private User user;
 }	
 		
 

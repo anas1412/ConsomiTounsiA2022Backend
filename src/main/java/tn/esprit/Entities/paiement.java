@@ -34,9 +34,6 @@ public class paiement implements Serializable {
 	private float somme_total;
 	
 	@OneToOne
-	private facture facture;
-	
-	@OneToOne
 	private panier panier;
 }	
 		

@@ -30,19 +30,16 @@ public class panier implements Serializable {
 
 	private long idPanier;
 	
+	private List<panierProduit> panierproduits;
+	
 	private int nbrArticle;
 	
 	private Date date;
 	
 	private float somme_total;
 	
-//	private List<panierProduit> panierproduits;
-	
 	@OneToOne
-	private User user;
-	
-//	@OneToMany(cascade = CascadeType.ALL , mappedBy="panier")
-//	private panierProduit panierproduit;	
+	private User user;	
 	
 	@OneToOne
 	private paiement paiement;
