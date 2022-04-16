@@ -1,6 +1,7 @@
 package tn.esprit.Services;
 
 import java.util.List;
+
 import tn.esprit.Entities.stock;
 
 public interface IStockService {
@@ -14,4 +15,6 @@ public interface IStockService {
 	stock updateStock (stock s);
 
 	stock retrieveStock (Long id);	
+	
+	List<stock> listAll(String keyword);
 }

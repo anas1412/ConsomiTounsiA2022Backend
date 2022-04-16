@@ -80,5 +80,15 @@ public class produitServiceImpl implements IProduitServices {
 		produitrepo.deleteById(id);
 		
 	}
+
+
+	@Override
+	public List<produit> listAll(String keyword) {
+		if (keyword != null) {
+			return produitrepo.search(keyword);
+		}
+		return (List<produit>) produitrepo.findAll();
+	}
+	
 		
 }

@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import tn.esprit.Entities.stock;
 import tn.esprit.Repository.stockRepository;
 
@@ -52,5 +51,14 @@ public class stockServiceImpl implements IStockService{
 	
 		return StockRepo.save(stock);
 	}
+
+	@Override
+	public List<stock> listAll(String keyword) {
+		if (keyword != null) {
+			return StockRepo.search(keyword);
+		}
+		return (List<stock>) StockRepo.findAll();
+	}
 			
+
 }

@@ -3,6 +3,8 @@ package tn.esprit.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -64,6 +66,13 @@ public class StockRestController {
 	return stockService.updateStock(stock);
 	}
 
-	
+	@RequestMapping("/")
+    public String viewHomePage(Model model, @Param("keyword") String keyword) {
+        List<stock> listStocks = stockService.listAll(keyword);
+        model.addAttribute("listStocks", listStocks);
+        model.addAttribute("keyword", keyword);
+         
+        return "index";
+    }
 	
 }

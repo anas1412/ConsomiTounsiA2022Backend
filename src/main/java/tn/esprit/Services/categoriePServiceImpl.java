@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.Entities.categorieP;
-
 import tn.esprit.Repository.categoriePRepository;
 
 
@@ -50,6 +49,14 @@ public class categoriePServiceImpl implements ICategorieServices {
 	public void removeCategorieProduit(Long id) {
 		// TODO Auto-generated method stub
 		CategorieRepo.deleteById(id);
+	}
+
+	@Override
+	public List<categorieP> listAll(String keyword) {
+		if (keyword != null) {
+			return CategorieRepo.search(keyword);
+		}
+		return (List<categorieP>) CategorieRepo.findAll();
 	}
 	
 

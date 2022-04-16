@@ -16,5 +16,7 @@ public interface ICategorieServices {
 
 	void removeCategorieProduit(Long id);
 	
+	List<categorieP> listAll(String keyword);
+	
 }
 

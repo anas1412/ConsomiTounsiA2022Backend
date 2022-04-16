@@ -6,6 +6,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -66,6 +68,15 @@ public class ProduitRestController {
 	/*<td>
 	<img src="${pageContext.request.contextPath }/product/barcode/${product.id }" width="200" height="50">
 </td*/
+	
+	@RequestMapping("/")
+    public String viewHomePage(Model model, @Param("keyword") String keyword) {
+        List<produit> listProducts = produitService.listAll(keyword);
+        model.addAttribute("listProducts", listProducts);
+        model.addAttribute("keyword", keyword);
+         
+        return "index";
+    }
 	
 	//http://localhost:8080/SpringMVC/produit/add-produit
 	@PostMapping("/add-produit/{categorie-id}/{stock-id}/{user-id}")

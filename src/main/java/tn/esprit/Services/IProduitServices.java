@@ -7,7 +7,6 @@ import tn.esprit.Entities.produit;
 public interface IProduitServices {
 
 	List<produit> retrieveAllProduits();
-
 	
 	produit addProduit (produit p, Long idCategorieProduit, Long idStock, Long idUser);
 
@@ -16,4 +15,6 @@ public interface IProduitServices {
 	produit retrieveProduit(Long id);
 	
 	void deleteProduit (Long id);
+
+	List<produit> listAll(String keyword);
 }
