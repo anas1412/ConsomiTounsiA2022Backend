@@ -16,10 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
 import tn.esprit.Entities.stock;
 import tn.esprit.Services.IStockService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/stock")
 public class StockRestController {
@@ -31,6 +32,7 @@ public class StockRestController {
 	// http://localhost:8080/SpringMVC/stock/retrieve-all-stocks
 	@GetMapping("/retrieve-all-stocks")
 	@ResponseBody
+	@ApiOperation(value = "Récupérer la liste des stocks")
 	public List<stock> getStocks() {
 	List<stock> listStocks = stockService.retrieveAllStock();
 	return listStocks;
@@ -39,6 +41,7 @@ public class StockRestController {
 	//http://localhost:8080/SpringMVC/stock/retrieve-stock/8
 	@GetMapping("/retrieve-stock/{stock-id}")
 	@ResponseBody
+	@ApiOperation(value = "Récupérer les données de stock")
 	public stock retrieveStock(@PathVariable("stock-id") Long stockId) {
 	return stockService.retrieveStock(stockId);
 	}
@@ -46,6 +49,7 @@ public class StockRestController {
 	//http://localhost:8080/SpringMVC/stock/add-stock
 	@PostMapping("/add-stock")
 	@ResponseBody
+	@ApiOperation(value = "Ajouter stock")
 	public stock addStock(@RequestBody stock s)
 	{
 	stock stock = stockService.addStock(s);
@@ -62,6 +66,7 @@ public class StockRestController {
 	//http://localhost:8080/SpringMVC/stock/modify-stock/@stock-id}
 	@PutMapping("/modify-stock")
 	@ResponseBody
+	@ApiOperation(value = "Modifier stock")
 	public stock modifyOperateur(@RequestBody stock stock) {
 	return stockService.updateStock(stock);
 	}

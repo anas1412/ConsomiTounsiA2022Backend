@@ -36,6 +36,8 @@ public class stock implements Serializable{
 	
 	private Integer quantite;
 	
+	private Integer quantiteMin;
+	
 	private String supplier_name;
 	
 	private String supplier_mail;

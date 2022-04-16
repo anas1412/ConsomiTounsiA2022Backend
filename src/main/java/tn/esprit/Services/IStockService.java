@@ -17,4 +17,6 @@ public interface IStockService {
 	stock retrieveStock (Long id);	
 	
 	List<stock> listAll(String keyword);
+	
+	void status();
 }

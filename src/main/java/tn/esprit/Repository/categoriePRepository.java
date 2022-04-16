@@ -12,7 +12,7 @@ import tn.esprit.Entities.categorieP;
 @Repository
 public interface categoriePRepository extends CrudRepository<categorieP, Long> {
 
-	@Query("SELECT c FROM categorieP c WHERE CONCAT(c.codeProduit, ' ', s.libelleCategorieProduit) LIKE %?1%")
+	@Query("SELECT c FROM categorieP c WHERE CONCAT(c.codeProduit , ' ', c.libelleCategorieProduit) LIKE %?1%")
 	public List<categorieP> search(String keyword);
 	
 }
