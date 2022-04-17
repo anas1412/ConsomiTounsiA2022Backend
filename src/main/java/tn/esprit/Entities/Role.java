@@ -22,15 +22,15 @@ public class Role {
 
 		@Id
 		@GeneratedValue (strategy = GenerationType.IDENTITY)
-		private Integer idRole;
+		private Long idRole;
 		private String name;
 		
 		
 		
-		public Integer getId() {
+		public Long getId() {
 			return idRole;
 		}
-		public void setId(Integer idRole) {
+		public void setId(Long idRole) {
 			this.idRole = idRole;
 		}
 		public String getName() {
