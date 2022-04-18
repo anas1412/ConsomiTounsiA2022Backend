@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.Entities.categorieP;
 import tn.esprit.Services.ICategorieServices;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/categorie")
 public class CategorieRestController {

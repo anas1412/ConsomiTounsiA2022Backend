@@ -25,7 +25,7 @@ import tn.esprit.Entities.produit;
 import tn.esprit.Services.IProduitServices;
 import tn.esprit.helpers.ZXingHelper;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/produit")
 public class ProduitRestController {
@@ -93,7 +93,7 @@ public class ProduitRestController {
 	@DeleteMapping("/remove-produit/{produit-id}")
 	@ResponseBody
 	public void removeProduit(@PathVariable("produit-id") Long produitId) {
-		produitService.retrieveProduit(produitId);
+		produitService.deleteProduit(produitId);
 	}
 
 	//http://localhost:8080/SpringMVC/produit/modify-produit
