@@ -17,6 +17,9 @@ public interface IUserService {
 	User retrieveUser(Long id);
 	
 	void deleteUser (Long id);
+
+	List<User> retrieveuserbyname ( String name);
+
 	
 	
 	
