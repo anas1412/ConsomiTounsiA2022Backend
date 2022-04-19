@@ -65,9 +65,7 @@ public class ProduitRestController {
 		outputStream.flush();
 		outputStream.close();
 	}
-	/*<td>
-	<img src="${pageContext.request.contextPath }/product/barcode/${product.id }" width="200" height="50">
-</td*/
+
 	
 	@RequestMapping("/")
     public String viewHomePage(Model model, @Param("keyword") String keyword) {
@@ -79,11 +77,11 @@ public class ProduitRestController {
     }
 	
 	//http://localhost:8080/SpringMVC/produit/add-produit
-	@PostMapping("/add-produit/{categorie-id}/{stock-id}/{user-id}")
+	@PostMapping("/add-produit/{stock-id}/{user-id}")
 	@ResponseBody
-	public produit addProduit(@RequestBody produit p,@PathVariable("categorie-id") Long idCategorie,@PathVariable("stock-id")Long idStock,@PathVariable("user-id")Long idUser)
+	public produit addProduit(@RequestBody produit p,@PathVariable("stock-id")Long idStock,@PathVariable("user-id")Long idUser)
 	{	
-		produit Produit = produitService.addProduit(p,idCategorie,idStock,idUser);
+		produit Produit = produitService.addProduit(p,idStock,idUser);
 	    return Produit;
 	}
 	

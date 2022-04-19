@@ -8,7 +8,7 @@ public interface IProduitServices {
 
 	List<produit> retrieveAllProduits();
 	
-	produit addProduit (produit p, Long idCategorieProduit, Long idStock, Long idUser);
+	produit addProduit (produit p, Long idStock, Long idUser);
 
 	produit updateProduit (produit p);
 	

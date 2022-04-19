@@ -11,7 +11,7 @@ import tn.esprit.Entities.produit;
 @Repository
 public interface produitRepository extends CrudRepository<produit, Long> {
 	
-	@Query("SELECT p FROM produit p WHERE CONCAT(p.codeProduit, ' ', p.libelleProduit, ' ', p.prix) LIKE %?1%")
+	@Query("SELECT p FROM produit p WHERE CONCAT(p.categorieProduit, ' ', p.libelleProduit) LIKE %?1%")
 	public List<produit> search(String keyword);
 
 }

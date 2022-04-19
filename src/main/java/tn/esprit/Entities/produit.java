@@ -30,14 +30,14 @@ public class produit implements Serializable {
 
 	private long idProduit;
 	
-	private String codeProduit;
+	private String categorieProduit;
 	
 	private String libelleProduit;
 	
 	private String description;
 	
 	private String image;
-	
+		
 	private float prix;
 	
 	private Date dateCreation;
@@ -45,9 +45,7 @@ public class produit implements Serializable {
 	@JsonIgnore
 	@ManyToOne
 	private stock stock;
-	@JsonIgnore	
-	@ManyToOne
-	private categorieP categorieP;
+
 	@JsonIgnore	
 	@ManyToOne
 	private User user;

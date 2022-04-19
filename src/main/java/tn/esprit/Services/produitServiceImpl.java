@@ -5,12 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import tn.esprit.Entities.categorieP;
 import tn.esprit.Entities.produit;
 import tn.esprit.Entities.stock;
 import tn.esprit.Entities.User;
 import tn.esprit.Repository.UserRepository;
-import tn.esprit.Repository.categoriePRepository;
 import tn.esprit.Repository.produitRepository;
 import tn.esprit.Repository.stockRepository;
 
@@ -23,8 +21,6 @@ public class produitServiceImpl implements IProduitServices {
 	produitRepository produitrepo ;
 	@Autowired
 	stockRepository stockRepository;
-	@Autowired
-	categoriePRepository caterepo ;
 	@Autowired
 	UserRepository userrepo ;
 
@@ -39,8 +35,7 @@ public class produitServiceImpl implements IProduitServices {
 	public produit updateProduit(produit p) {
 		produit produit = produitrepo.findById(p.getIdProduit()).get();
 
-		
-		produit.setCodeProduit(p.getCodeProduit());
+		produit.setCategorieProduit(p.getCategorieProduit());
 		produit.setLibelleProduit(p.getLibelleProduit());
 		produit.setDescription(p.getDescription());
 		produit.setImage(p.getImage());
@@ -61,11 +56,9 @@ public class produitServiceImpl implements IProduitServices {
 	
 	
 	@Override
-	public produit addProduit(produit p, Long idCategorieProduit, Long idStock, Long idUser) {		
+	public produit addProduit(produit p,Long idStock, Long idUser) {		
 		stock stock = stockRepository.findById(idStock).orElse(null);
-		categorieP cp = caterepo.findById(idCategorieProduit).orElse(null);
 		User u = userrepo.findById(idUser).orElse(null);
-		p.setCategorieP(cp);
 		p.setStock(stock);
 		p.setUser(u);
 		p.setDateCreation(new Date());
