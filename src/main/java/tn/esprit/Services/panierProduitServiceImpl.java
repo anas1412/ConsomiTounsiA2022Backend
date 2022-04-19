@@ -1,6 +1,7 @@
 package tn.esprit.Services;
 
 import java.util.Date;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import tn.esprit.Repository.PanierProduitRepository;
 import tn.esprit.Repository.PanierRepository;
 import tn.esprit.Repository.UserRepository;
 import tn.esprit.Repository.produitRepository;
-
+@Service
 public class panierProduitServiceImpl implements IPanierProduitService{
 	
 	@Autowired
@@ -36,19 +37,17 @@ public class panierProduitServiceImpl implements IPanierProduitService{
 	}
 
 	@Override
-	public panierProduit addPanierProduit(panierProduit pp, Long idProduit, Long idPanier, Long id) {
+	public panierProduit addPanierProduit(panierProduit pp, Long idProduit) {
 		// TODO Auto-generated method stub
-		User u = UserRepo.findById(id).orElse(null);
-		pp.setUser(u);
 		
 		produit p = ProduitRepo.findById(idProduit).orElse(null);
 		pp.setProduit(p);
 		
-		panier pa = PanierRepo.findById(idPanier).orElse(null);
-		pp.setPanier(pa);
+		int q = pp.getQte();
+		pp.setQte(q);
 		
-		pp.setQte(pp.getQte());
-		pp.setSomme(pp.getSomme());
+		float s = p.getPrix();
+		pp.setSomme(s*q);
 		
 		PanierProduitRepo.save(pp);
 		return pp;
@@ -58,11 +57,14 @@ public class panierProduitServiceImpl implements IPanierProduitService{
 	public panierProduit updatePanierProduit(panierProduit pp) {
 		// TODO Auto-generated method stub
 		panierProduit panierproduit = PanierProduitRepo.findById(pp.getIdPanierProduit()).get();
-		panierproduit.setQte(pp.getQte());
+		int q = pp.getQte();
+		panierproduit.setQte(q);
+		
+		float p = pp.getProduit().getPrix();
+		panierproduit.setSomme(p*q);
 		return PanierProduitRepo.save(pp);
 	}
-	
-
+		
 	@Override
 	public panierProduit retrievePanierProduit(Long idPanierProduit) {
 		// TODO Auto-generated method stub

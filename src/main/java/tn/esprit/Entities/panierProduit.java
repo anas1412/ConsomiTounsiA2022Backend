@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -30,15 +33,14 @@ public class panierProduit implements Serializable {
 	private int qte;
 	
 	private float somme;
-	
+	@JsonIgnore
 	@OneToOne
 	private produit produit;
 	
+	@JsonIgnore
 	@ManyToOne
 	private panier panier;
 	
-	@ManyToOne
-	private User user;
 }	
 		
 

@@ -19,60 +19,65 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.esprit.Entities.Reclamation;
 import tn.esprit.Entities.panierProduit;
 import tn.esprit.Services.IPanierProduitService;
 import tn.esprit.helpers.ZXingHelper;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping("/panierProduit")
+@RequestMapping("/panierproduit")
 public class PanierProduitRestController {
 	
 	@Autowired
-	IPanierProduitService panierProduitService;
+	IPanierProduitService PanierProduitService;
 	
+	
+		//works
 		// http://localhost:8080/SpringMVC/panierproduit/retrieve-all-panierproduit
 		@GetMapping("/retrieve-all-panierproduit")
 		@ResponseBody
 		public List<panierProduit> getPanierProduit() {
-		List<panierProduit> listPanierProduit = panierProduitService.retrieveAllPanierProduit();
+		List<panierProduit> listPanierProduit = PanierProduitService.retrieveAllPanierProduit();
 		return listPanierProduit;
 		}
 
+		//works
 		//http://localhost:8080/SpringMVC/panierproduit/retrieve-panierproduit/{panierproduit-id}
-		@GetMapping("/retrieve-panierproduit/{panierproduit-id}")
+		@GetMapping("/retrieve-panierproduit/{panierProduit-id}")
 		@ResponseBody
 		public panierProduit retrievePanierProduit(@PathVariable("panierProduit-id") Long panierProduitId) {
-		return panierProduitService.retrievePanierProduit(panierProduitId);
+		return PanierProduitService.retrievePanierProduit(panierProduitId);
 		}
 		
 		@RequestMapping(method = RequestMethod.GET)
 		public String index(ModelMap modelMap) {
-			modelMap.put("panierProduit", panierProduitService.retrieveAllPanierProduit());
+			modelMap.put("panierProduit", PanierProduitService.retrieveAllPanierProduit());
 			return "panierproduit/index";
 		}
 		
-		//http://localhost:8080/SpringMVC/panierproduit/add-panierproduit/
-		@PostMapping("/add-panierproduit/{panierproduit-id}/{Produit-id}/{Panier-id}/{User-id}/")
+		//doesnt work yet
+		//http://localhost:8080/SpringMVC/panierproduit/add-panierproduit/{Produit-id}/
+		@PostMapping("/add-panierproduit/{Produit-id}/")
 		@ResponseBody
-		public panierProduit addPanierProduit(@RequestBody panierProduit p,@PathVariable("Produit-id") Long idProduit,@PathVariable("Panier-id")Long idPanier, @PathVariable("User-id")Long id){
-			panierProduit PanierProduit = panierProduitService.addPanierProduit(p,idProduit,idPanier,id);
+		public panierProduit addPanierProduit(@RequestBody panierProduit p, @PathVariable("Produit-id") Long idProduit){
+			panierProduit PanierProduit = PanierProduitService.addPanierProduit(p,idProduit);
 		    return PanierProduit;
 		}
 		
+		//works
 		//http://localhost:8080/SpringMVC/panierproduit/remove-panierproduit/{panierproduit-id}
 		@DeleteMapping("/remove-panierproduit/{panierproduit-id}")
 		@ResponseBody
 		public void removePanierProduit(@PathVariable("panierproduit-id") Long panierProduitId) {
-			panierProduitService.retrievePanierProduit(panierProduitId);
+			PanierProduitService.removePanierProduit(panierProduitId);
 		}
 
-		//http://localhost:8080/SpringMVC/panierproduit/update-panierproduit
-		@PutMapping("/update-panierproduit")
+		//works
+		//http://localhost:8080/SpringMVC/panierproduit/update-panierproduit/{panierproduit-id}/
+		@PutMapping("/update-panierproduit/")
 		@ResponseBody
 		public panierProduit updatePanierProduit(@RequestBody panierProduit p){	
-			panierProduit PanierProduit = panierProduitService.updatePanierProduit(p);
+			panierProduit PanierProduit = PanierProduitService.updatePanierProduit(p);
 			return PanierProduit;
 		}
 		

@@ -31,7 +31,7 @@ public class FactureRestController {
 
 	@Autowired
 	IFactureService factureService;
-	
+				
 				// http://localhost:8080/SpringMVC/facture/retrieve-all-facture
 				@GetMapping("/retrieve-all-facture")
 				@ResponseBody
@@ -39,7 +39,7 @@ public class FactureRestController {
 				List<facture> listFacture = factureService.retrieveAllFacture();
 				return listFacture;
 				}
-	
+
 				//http://localhost:8080/SpringMVC/facture/retrieve-facture/{facture-id}
 				@GetMapping("/retrieve-facture/{facture-id}")
 				@ResponseBody

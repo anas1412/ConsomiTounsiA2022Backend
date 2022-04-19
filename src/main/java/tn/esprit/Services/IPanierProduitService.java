@@ -14,6 +14,8 @@ public interface IPanierProduitService {
 
 	void removePanierProduit(Long id);
 
-	panierProduit addPanierProduit(panierProduit pp, Long idProduit, Long idPanier, Long idUser);
+	panierProduit addPanierProduit(panierProduit pp, Long idProduit);
+
+	//List<panierProduit> retrieveAllPanierProduit(Long idPanier);
 	
 }
