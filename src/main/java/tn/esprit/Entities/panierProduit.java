@@ -34,10 +34,11 @@ public class panierProduit implements Serializable {
 	
 	private float somme;
 	
+	//@JsonIgnore
 	@OneToOne
 	private produit produit;
 	
-	@JsonIgnore
+	//@JsonIgnore
 	@ManyToOne
 	private panier panier;
 

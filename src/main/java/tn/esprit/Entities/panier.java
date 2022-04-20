@@ -37,11 +37,11 @@ public class panier implements Serializable {
 
 	private long idPanier;
 	
-	@JsonIgnore
+	//@JsonIgnore
 	@OneToOne
 	private User user;	
 	
-	@JsonIgnore
+	//@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL , mappedBy="panier")
 	private Set<panierProduit>ListPanierProduit;
 	

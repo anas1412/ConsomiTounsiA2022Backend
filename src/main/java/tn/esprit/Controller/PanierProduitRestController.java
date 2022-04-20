@@ -55,9 +55,9 @@ public class PanierProduitRestController {
 			return "panierproduit/index";
 		}
 		
-		//doesnt work yet
+		//works
 		//http://localhost:8080/SpringMVC/panierproduit/add-panierproduit/{Produit-id}/
-		@PostMapping("/add-panierproduit/{Produit-id}/")
+		@PostMapping("/add-panierproduit/{Produit-id}")
 		@ResponseBody
 		public panierProduit addPanierProduit(@RequestBody panierProduit p, @PathVariable("Produit-id") Long idProduit){
 			panierProduit PanierProduit = PanierProduitService.addPanierProduit(p,idProduit);

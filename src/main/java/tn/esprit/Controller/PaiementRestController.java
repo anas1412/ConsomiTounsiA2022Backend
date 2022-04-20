@@ -33,7 +33,7 @@ public class PaiementRestController {
 	
 	@Autowired
 	IPaiementService paiementService;
-	
+			//works
 			// http://localhost:8080/SpringMVC/paiement/retrieve-all-paiement
 			@GetMapping("/retrieve-all-paiement")
 			@ResponseBody
@@ -56,7 +56,7 @@ public class PaiementRestController {
 			}
 			
 			//http://localhost:8080/SpringMVC/paiement/add-paiement
-			@PostMapping("/add-paiement/{Panier-id}/")
+			@PostMapping("/add-paiement/{Panier-id}")
 			@ResponseBody
 			public paiement addPaiement(@RequestBody paiement p,@PathVariable("Panier-id") Long idPanier){	
 				paiement Paiement = paiementService.addPaiement(p,idPanier);

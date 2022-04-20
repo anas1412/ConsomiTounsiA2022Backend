@@ -30,7 +30,7 @@ public class PanierRestController {
 	
 	@Autowired
 	IPanierService panierService;
-	
+	//works
 	// http://localhost:8080/SpringMVC/panier/retrieve-all-panier
 		@GetMapping("/retrieve-all-panier")
 		@ResponseBody

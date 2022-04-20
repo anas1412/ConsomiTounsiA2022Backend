@@ -31,7 +31,7 @@ public class FactureRestController {
 
 	@Autowired
 	IFactureService factureService;
-				
+				//works all
 				// http://localhost:8080/SpringMVC/facture/retrieve-all-facture
 				@GetMapping("/retrieve-all-facture")
 				@ResponseBody
@@ -54,7 +54,7 @@ public class FactureRestController {
 				}
 				
 				//http://localhost:8080/SpringMVC/facture/add-facture
-				@PostMapping("/add-facture/{facture-id}/{Paiement-id}/{User-id}/")
+				@PostMapping("/add-facture/{Paiement-id}/{User-id}")
 				@ResponseBody
 				public facture addFacture(@RequestBody facture f,@PathVariable("Paiement-id") Long idPaiement,@PathVariable("User-id")Long id){	
 					facture Facture = factureService.addFacture(f,idPaiement,id);
