@@ -37,19 +37,16 @@ public class panier implements Serializable {
 
 	private long idPanier;
 	
-	private int nbrArticle;
-	
-	private Date date;
-	
-	private float somme_total;
-	
-	//@JsonIgnore
+	@JsonIgnore
 	@OneToOne
 	private User user;	
 	
-	//@JsonIgnore
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL , mappedBy="panier")
-	private Set<panierProduit>ListPanierProduit;	
+	private Set<panierProduit>ListPanierProduit;
+	
+
+	//List<panierProduit> ListPanierProduits = new ArrayList<>();
 	
 
 }

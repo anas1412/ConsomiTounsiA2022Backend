@@ -8,4 +8,6 @@ import tn.esprit.Entities.panierProduit;
 @Repository
 public interface PanierProduitRepository extends CrudRepository<panierProduit, Long> {
 
+	
+
 }

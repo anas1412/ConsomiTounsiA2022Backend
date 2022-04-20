@@ -33,13 +33,16 @@ public class panierProduit implements Serializable {
 	private int qte;
 	
 	private float somme;
-	@JsonIgnore
+	
 	@OneToOne
 	private produit produit;
 	
 	@JsonIgnore
 	@ManyToOne
 	private panier panier;
+
+	
+	
 	
 }	
 		

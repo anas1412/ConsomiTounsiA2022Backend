@@ -2,6 +2,7 @@ package tn.esprit.Services;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import tn.esprit.Entities.panierProduit;
 import tn.esprit.Repository.PanierProduitRepository;
 import tn.esprit.Repository.PanierRepository;
 import tn.esprit.Repository.UserRepository;
+import tn.esprit.Services.panierProduitServiceImpl;
 
 
 @Service 
@@ -25,17 +27,12 @@ public class panierServiceImpl implements IPanierService{
 	@Autowired
 	UserRepository UserRepo;
 	
+	
 
 	@Override
 	public List<panier> retrieveAllPanier() {
 		// TODO Auto-generated method stub
 		return (List<panier>) PanierRepo.findAll();
-	}
-
-	@Override
-	public panier updatePanier(panier p) {
-		// TODO Auto-generated method stub		
-		return PanierRepo.save(p);
 	}
 	
 
@@ -50,11 +47,6 @@ public class panierServiceImpl implements IPanierService{
 		// TODO Auto-generated method stub
 		User u = UserRepo.findById(id).orElse(null);
 		p.setUser(u);
-		
-		panier pa = PanierRepo.findById(p.getIdPanier()).get();
-		p.setDate(new Date());
-		p.setNbrArticle(pa.getNbrArticle());
-		p.setSomme_total(pa.getSomme_total());
 		PanierRepo.save(p);
 		return p;
 	}
@@ -67,10 +59,22 @@ public class panierServiceImpl implements IPanierService{
 		
 	}
 
+
 	@Override
-	public panier addPanier(panier p) {
+	public panier addToPanier(panier p, Long IdPanierProduit) {
 		// TODO Auto-generated method stub
-		return null;
+
+		panierProduit pp = PanierProduitRepo.findById(IdPanierProduit).orElse(null);
+		pp.setPanier(p);
+		PanierRepo.save(p);
+		return p;
+	}
+
+
+	@Override
+	public void removeFromPanier(panier p, Long IdPanierProduit) {
+		// TODO Auto-generated method stub
+		PanierProduitRepo.deleteById(IdPanierProduit);
 	}
 
 	

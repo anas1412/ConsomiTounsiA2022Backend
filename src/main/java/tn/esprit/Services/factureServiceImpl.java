@@ -53,8 +53,8 @@ public class factureServiceImpl implements IFactureService{
 	public facture updateFacture(facture f) {
 		// TODO Auto-generated method stub
 		facture fa = FactureRepo.findById(f.getIdFacture()).get();
-		f.setType(fa.getType());
-		f.setEtat_livraison(fa.getEtat_livraison());
+		fa.setType(f.getType());
+		fa.setEtat_livraison(f.getEtat_livraison());
 		return FactureRepo.save(f);
 	}
 
@@ -68,6 +68,12 @@ public class factureServiceImpl implements IFactureService{
 	public void removeFacture(Long idFacture) {
 		// TODO Auto-generated method stub
 		FactureRepo.deleteById(idFacture);
+	}
+
+	@Override
+	public void imprimerFacture(Long idFacture) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

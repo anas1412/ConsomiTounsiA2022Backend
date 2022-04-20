@@ -56,7 +56,7 @@ public class PaiementRestController {
 			}
 			
 			//http://localhost:8080/SpringMVC/paiement/add-paiement
-			@PostMapping("/add-paiement/{paiement-id}/{Panier-id}/")
+			@PostMapping("/add-paiement/{Panier-id}/")
 			@ResponseBody
 			public paiement addPaiement(@RequestBody paiement p,@PathVariable("Panier-id") Long idPanier){	
 				paiement Paiement = paiementService.addPaiement(p,idPanier);
@@ -67,7 +67,7 @@ public class PaiementRestController {
 			@DeleteMapping("/remove-paiement/{paiement-id}")
 			@ResponseBody
 			public void removePaiement(@PathVariable("paiement-id") Long paiementId) {
-				paiementService.retrievePaiement(paiementId);
+				paiementService.removePaiement(paiementId);
 			}
 
 			//http://localhost:8080/SpringMVC/paiement/update-paiement

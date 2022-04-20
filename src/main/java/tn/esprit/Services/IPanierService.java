@@ -9,14 +9,15 @@ public interface IPanierService {
 
 	List<panier> retrieveAllPanier();
 
-	panier addPanier(panier p);
-
-	panier updatePanier(panier p);
-
 	panier retrievePanier(Long id);
 
 	void removePanier(Long id);
 
+	panier addToPanier(panier p, Long IdProduitPanier);
+
 	panier addPanier(panier p, Long id);
+
+	void removeFromPanier(panier p, Long IdProduitPanier);
+
 	
 }

@@ -53,10 +53,10 @@ public class PanierRestController {
 		}
 		
 		//http://localhost:8080/SpringMVC/panier/add-panier
-		@PostMapping("/add-panier/{panier-id}/{User-id}/")
+		@PostMapping("/add-panier/{User-id}")
 		@ResponseBody
 		public panier addPanier(@RequestBody panier p, @PathVariable("User-id")Long id){	
-			panier Panier = panierService.addPanier(p);
+			panier Panier = panierService.addPanier(p,id);
 		    return Panier;
 		}
 		
@@ -64,15 +64,24 @@ public class PanierRestController {
 		@DeleteMapping("/remove-panier/{panier-id}")
 		@ResponseBody
 		public void removePanier(@PathVariable("panier-id") Long panierId) {
-			panierService.retrievePanier(panierId);
+			panierService.removePanier(panierId);
 		}
-
-		//http://localhost:8080/SpringMVC/panier/update-panier
-		@PutMapping("/update-panier")
+		
+		//http://localhost:8080/SpringMVC/panier/add-to-panier
+		@PostMapping("/add-to-panier/{Panier-id}/{ProduitPanier-id}")
 		@ResponseBody
-		public panier updatePanier(@RequestBody panier p){	
-			panier Panier = panierService.updatePanier(p);
+		public panier addToPanier(@RequestBody panier p, @PathVariable("ProduitPanier-id")Long IdProduitPanier){	
+			panier Panier = panierService.addToPanier(p,IdProduitPanier);
 			return Panier;
 		}
+		
+		//http://localhost:8080/SpringMVC/panier/remove-from-panier
+		@DeleteMapping("/remove-from-panier/{Panier-id}/{ProduitPanier-id}")
+		@ResponseBody
+		public void removeFromPanier(@RequestBody panier p, @PathVariable("ProduitPanier-id")Long IdProduitPanier){
+			panierService.removeFromPanier(p,IdProduitPanier);
+		}
+				
+				
 		
 }

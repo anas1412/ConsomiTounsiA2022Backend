@@ -46,10 +46,10 @@ public class paiementServiceImpl implements IPaiementService{
 	public paiement updatePaiement(paiement p) {
 		// TODO Auto-generated method stub
 		paiement pa = PaiementRepo.findById(p.getIdPaiement()).get();
-		p.setNature(pa.getNature());
-		p.setSomme_total(pa.getSomme_total());
+		pa.setNature(p.getNature());
+		pa.setSomme_total(p.getSomme_total());
 		
-		return PaiementRepo.save(pa);
+		return PaiementRepo.save(p);
 	}
 
 	@Override
