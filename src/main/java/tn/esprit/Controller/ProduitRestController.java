@@ -81,6 +81,7 @@ public class ProduitRestController {
 	@ResponseBody
 	public produit addProduit(@RequestBody produit p,@PathVariable("stock-id")Long idStock,@PathVariable("user-id")Long idUser)
 	{	
+        
 		produit Produit = produitService.addProduit(p,idStock,idUser);
 	    return Produit;
 	}

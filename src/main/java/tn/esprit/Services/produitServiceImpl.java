@@ -59,9 +59,21 @@ public class produitServiceImpl implements IProduitServices {
 	public produit addProduit(produit p,Long idStock, Long idUser) {		
 		stock stock = stockRepository.findById(idStock).orElse(null);
 		User u = userrepo.findById(idUser).orElse(null);
+		
+		
+		String link = "https://www.youtube.com/embed/";		
+		
+        String url = p.getImage();
+        
+        url = url.substring(url.length()-11);
+        
+        link = link + url;
+		
+        
 		p.setStock(stock);
 		p.setUser(u);
 		p.setDateCreation(new Date());
+		p.setImage(link);
 		produitrepo.save(p);
 	    return p;		
 	}
