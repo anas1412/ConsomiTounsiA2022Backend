@@ -81,6 +81,14 @@ public class PanierRestController {
 		public void removeFromPanier(@RequestBody panier p, @PathVariable("ProduitPanier-id")Long IdProduitPanier){
 			panierService.removeFromPanier(p,IdProduitPanier);
 		}
+		
+		//http://localhost:8080/SpringMVC/panier/commander-panier/{Panier-id}
+				@PostMapping("/commander-panier/{Panier-id}")
+				@ResponseBody
+				public panier commanderPanier(@RequestBody panier p){	
+					panier Panier = panierService.commanderPanier(p);
+				    return Panier;
+				}
 				
 				
 		

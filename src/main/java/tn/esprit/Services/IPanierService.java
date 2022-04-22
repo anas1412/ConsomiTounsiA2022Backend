@@ -19,5 +19,7 @@ public interface IPanierService {
 
 	void removeFromPanier(panier p, Long IdProduitPanier);
 
+	panier commanderPanier(panier p);
+
 	
 }

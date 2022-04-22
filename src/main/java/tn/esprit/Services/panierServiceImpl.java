@@ -8,12 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.Entities.User;
+import tn.esprit.Entities.paiement;
 import tn.esprit.Entities.panier;
 import tn.esprit.Entities.panierProduit;
+import tn.esprit.Repository.PaiementRepository;
 import tn.esprit.Repository.PanierProduitRepository;
 import tn.esprit.Repository.PanierRepository;
 import tn.esprit.Repository.UserRepository;
 import tn.esprit.Services.panierProduitServiceImpl;
+import tn.esprit.Controller.PaiementRestController;
 
 
 @Service 
@@ -26,6 +29,9 @@ public class panierServiceImpl implements IPanierService{
 	
 	@Autowired
 	UserRepository UserRepo;
+	
+	@Autowired
+	PaiementRepository PaiementRepo;
 	
 	
 
@@ -75,6 +81,16 @@ public class panierServiceImpl implements IPanierService{
 	public void removeFromPanier(panier p, Long IdPanierProduit) {
 		// TODO Auto-generated method stub
 		PanierProduitRepo.deleteById(IdPanierProduit);
+	}
+
+
+	@Override
+	public panier commanderPanier(panier p) {
+		// TODO Auto-generated method stub
+		paiement pa = new paiement();
+		pa = PaiementRepo.addPaiement(pa, p.getIdPanier());
+		
+		return null;
 	}
 
 	

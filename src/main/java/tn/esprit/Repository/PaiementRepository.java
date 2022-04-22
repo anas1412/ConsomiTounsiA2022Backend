@@ -8,4 +8,6 @@ import tn.esprit.Entities.paiement;
 @Repository
 public interface PaiementRepository extends CrudRepository<paiement, Long> {
 
+	paiement addPaiement(paiement pa, long idPanier);
+
 }
