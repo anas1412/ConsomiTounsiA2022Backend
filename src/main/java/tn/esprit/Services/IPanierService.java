@@ -2,6 +2,7 @@ package tn.esprit.Services;
 
 import java.util.List;
 
+import tn.esprit.Entities.paiement;
 import tn.esprit.Entities.panier;
 import tn.esprit.Entities.panierProduit;
 
@@ -18,8 +19,6 @@ public interface IPanierService {
 	panier addPanier(panier p, Long id);
 
 	void removeFromPanier(panier p, Long IdProduitPanier);
-
-	panier commanderPanier(panier p);
 
 	
 }

@@ -30,9 +30,6 @@ public class panierServiceImpl implements IPanierService{
 	@Autowired
 	UserRepository UserRepo;
 	
-	@Autowired
-	PaiementRepository PaiementRepo;
-	
 	
 
 	@Override
@@ -81,16 +78,6 @@ public class panierServiceImpl implements IPanierService{
 	public void removeFromPanier(panier p, Long IdPanierProduit) {
 		// TODO Auto-generated method stub
 		PanierProduitRepo.deleteById(IdPanierProduit);
-	}
-
-
-	@Override
-	public panier commanderPanier(panier p) {
-		// TODO Auto-generated method stub
-		paiement pa = new paiement();
-		pa = PaiementRepo.addPaiement(pa, p.getIdPanier());
-		
-		return null;
 	}
 
 	
