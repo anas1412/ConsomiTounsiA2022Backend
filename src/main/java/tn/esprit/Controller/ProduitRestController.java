@@ -103,6 +103,30 @@ public class ProduitRestController {
 		produit Produit = produitService.updateProduit(p);
 	return Produit;
 	}
-
+	
+	// http://localhost:8090/SpringMVC/produit/GetProduitByIdUser/{user-id}
+	 @GetMapping("/GetProduitByIdUser/{user-id}")
+	 @ResponseBody
+	 public List<produit> GetProduitByIdUser(@PathVariable("user-id") int id) {
+		 List<produit> listproduits = produitService.FindByIdUser(Long.valueOf(id));
+			return listproduits;			 
+		 }
+	 
+	 
+	 @GetMapping("/GetProduitByStockId/{stock-id}")
+	 @ResponseBody
+	 public List<produit> GetProduitByStockId(@PathVariable("stock-id") int id) {
+		 List<produit> listproduits = produitService.findByIdstock(Long.valueOf(id));
+			return listproduits;			 
+		 }
+	 
+	 
+		// http://localhost:8089/SpringMVC/produit/AssagnProduitToStock/{idS}/{idP}
+		@PutMapping("/AssagnProduitToStock/{idS}/{idP}")
+		@ResponseBody
+		public void AssagnProductStock(@PathVariable("idS")Long idStock,@PathVariable("idP") Long idProduct) {
+			produitService.AssagnProductStock(idStock, idProduct);
+		
+		}
 	
 }

@@ -94,6 +94,32 @@ public class produitServiceImpl implements IProduitServices {
 		}
 		return (List<produit>) produitrepo.findAll();
 	}
+
+
+	@Override
+	public List<produit> FindByIdUser(Long id) {
+		return (List<produit>) produitrepo.findByIdUser(id);
+	}
 	
+	
+	@Override
+	public void AssagnProductStock(Long idStock, Long idProduct) {
+		
+			stock st = stockRepository.findById(idStock).orElse(null);
+			produit p = produitrepo.findById(idProduct).orElse(null);
+			p.setStock(st); //cle etrangere
+			produitrepo.save(p);
+				
+			
+		}
+
+
+	@Override
+	public List<produit> findByIdstock(Long id) {
+		// TODO Auto-generated method stub
+		return (List<produit>) produitrepo.findByIdstock(id);
+	}
+
+
 		
 }

@@ -17,4 +17,10 @@ public interface IProduitServices {
 	void deleteProduit (Long id);
 
 	List<produit> listAll(String keyword);
+	
+	public List<produit> FindByIdUser(Long id);
+	
+	void AssagnProductStock(Long idStock,Long idProduct) ;
+	
+	List<produit> findByIdstock (Long id);
 }
