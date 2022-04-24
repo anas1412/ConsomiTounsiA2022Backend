@@ -54,10 +54,10 @@ public class FactureRestController {
 				}
 				
 				//http://localhost:8080/SpringMVC/facture/add-facture
-				@PostMapping("/add-facture/{Paiement-id}/{User-id}")
+				@PostMapping("/add-facture/{Paiement-id}")
 				@ResponseBody
-				public facture addFacture(@RequestBody facture f,@PathVariable("Paiement-id") Long idPaiement,@PathVariable("User-id")Long id){	
-					facture Facture = factureService.addFacture(f,idPaiement,id);
+				public facture addFacture(@RequestBody facture f,@PathVariable("Paiement-id") Long idPaiement){	
+					facture Facture = factureService.addFacture(f,idPaiement);
 				    return Facture;
 				}
 				

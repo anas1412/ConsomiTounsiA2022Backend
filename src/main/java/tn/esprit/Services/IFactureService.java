@@ -14,8 +14,8 @@ public interface IFactureService {
 
 	void removeFacture(Long id);
 
-	facture addFacture(facture f, Long idFacture, Long id);
-
 	void imprimerFacture(Long factureId);
+
+	facture addFacture(facture f, Long idPaiement);
 	
 }

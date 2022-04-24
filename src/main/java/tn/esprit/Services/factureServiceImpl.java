@@ -34,10 +34,8 @@ public class factureServiceImpl implements IFactureService{
 	}
 
 	@Override
-	public facture addFacture(facture f, Long idPaiement, Long id) {
+	public facture addFacture(facture f, Long idPaiement) {
 		// TODO Auto-generated method stub
-		User u = UserRepo.findById(id).orElse(null);
-		f.setUser(u);
 		
 		paiement p = PaiementRepo.findById(idPaiement).orElse(null);
 		f.setPaiement(p);
