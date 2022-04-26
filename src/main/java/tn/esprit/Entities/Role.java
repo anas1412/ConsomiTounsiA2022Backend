@@ -1,31 +1,37 @@
 package tn.esprit.Entities;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
 
+
+
 @Entity
-@Table( name = "roles")
 public class Role {
 
 		@Id
-		@Column (name = "roles_id")
 		@GeneratedValue (strategy = GenerationType.IDENTITY)
-		private Integer id;
+		private Integer idRole;
 		private String name;
 		
 		
 		
 		public Integer getId() {
-			return id;
+			return idRole;
 		}
-		public void setId(Integer id) {
-			this.id = id;
+		public void setId(Integer idRole) {
+			this.idRole = idRole;
 		}
 		public String getName() {
 			return name;
@@ -33,4 +39,7 @@ public class Role {
 		public void setName(String name) {
 			this.name = name;
 		}
+
+		@ManyToMany (mappedBy="roles", cascade = CascadeType.ALL)
+		private Set<User> users;
 }

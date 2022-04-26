@@ -12,6 +12,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,15 +34,16 @@ public class Event implements Serializable {/**
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idEvent;
 	String labelle;
-	String Description;
+	String description;
 	@Temporal(TemporalType.DATE)
 	Date dateDebut;
 	@Temporal(TemporalType.DATE)
 	Date DateFin;
-	String Lieu ;
+	String lieu ;
 	int etat;
 	String image;
 	
+	@JsonIgnore
 	@OneToOne
 	private Cagnotte cagnotte;
 	

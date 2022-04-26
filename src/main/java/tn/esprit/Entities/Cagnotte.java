@@ -29,12 +29,12 @@ public class Cagnotte implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idCagnotte;
-	String Labelle;
-	Long TotalSomme;
+	String labelle;
+	Long totalSomme;
 	int etat;
 	
 @JsonIgnore
-	@OneToOne
+	@OneToOne(mappedBy="cagnotte")
 	private Event event;
 
 }
