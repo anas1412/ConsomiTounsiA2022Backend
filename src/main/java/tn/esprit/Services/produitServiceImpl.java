@@ -68,8 +68,7 @@ public class produitServiceImpl implements IProduitServices {
         url = url.substring(url.length()-11);
         
         link = link + url;
-		
-        
+		       
 		p.setStock(stock);
 		p.setUser(u);
 		p.setDateCreation(new Date());
