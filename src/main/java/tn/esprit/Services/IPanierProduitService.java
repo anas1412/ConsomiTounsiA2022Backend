@@ -2,20 +2,19 @@ package tn.esprit.Services;
 
 import java.util.List;
 
+import tn.esprit.Entities.User;
 import tn.esprit.Entities.panierProduit;
 
 public interface IPanierProduitService {
+	
+	
+	
+	panierProduit updateQte(Long idProduit, int quantity, Long id);
 
-	List<panierProduit> retrieveAllPanierProduit();
+	panierProduit addProduit(Long idProduit, int quantity, Long id);
 
-	panierProduit updatePanierProduit(panierProduit pp);
+	List<panierProduit> detailPanier(Long user_id);
 
-	panierProduit retrievePanierProduit(Long id);
-
-	void removePanierProduit(Long id);
-
-	panierProduit addPanierProduit(panierProduit pp, Long idProduit);
-
-	//List<panierProduit> retrieveAllPanierProduit(Long idPanier);
+	void removeProduit(User user, Long idProduit);
 	
 }

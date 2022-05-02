@@ -26,13 +26,17 @@ import tn.esprit.Services.IPanierProduitService;
 import tn.esprit.helpers.ZXingHelper;
 
 
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/paiement")
 public class PaiementRestController {
 	
 	@Autowired
 	IPaiementService paiementService;
+	
+	@Autowired
+	IPanierProduitService PanierProdService;
+	
 			//works
 			// http://localhost:8080/SpringMVC/paiement/retrieve-all-paiement
 			@GetMapping("/retrieve-all-paiement")
@@ -48,6 +52,13 @@ public class PaiementRestController {
 			public paiement retrievePaiement(@PathVariable("paiement-id") Long paiementId) {
 			return paiementService.retrievePaiement(paiementId);
 			}
+			
+			//http://localhost:8080/SpringMVC/paiement/retrieve-paiements-by-user/{user-id}
+			@GetMapping("/retrieve-paiements-by-user/{user-id}")
+			@ResponseBody
+			public List<paiement> retrievePaiementsByUser(@PathVariable("user-id") Long usertId) {
+			return paiementService.retrievePaiementByUser(usertId);
+			}
 	
 			@RequestMapping(method = RequestMethod.GET)
 			public String index(ModelMap modelMap) {
@@ -55,27 +66,22 @@ public class PaiementRestController {
 				return "paiement/index";
 			}
 			
-			//http://localhost:8080/SpringMVC/paiement/add-paiement
-			@PostMapping("/add-paiement/{Panier-id}")
+			//http://localhost:8080/SpringMVC/paiement/add-paiement/{user-id}
+			@PostMapping("/add-paiement/{user-id}")
 			@ResponseBody
-			public paiement addPaiement(@RequestBody paiement p,@PathVariable("Panier-id") Long idPanier){	
-				paiement Paiement = paiementService.addPaiement(p,idPanier);
+			public paiement addPaiement(@RequestBody paiement p, @PathVariable("user-id") Long userId){	
+				paiement Paiement = paiementService.addPaiement(p,userId);
 			    return Paiement;
 			}
 			
-			//http://localhost:8080/SpringMVC/paiement/remove-paiement/{paiement-id}
-			@DeleteMapping("/remove-paiement/{paiement-id}")
+			// http://localhost:8080/SpringMVC/paiement/retrieve-paiement-produits/{paiement-id}
+			@GetMapping("/retrieve-paiement-produits/{paiement-id}")
 			@ResponseBody
-			public void removePaiement(@PathVariable("paiement-id") Long paiementId) {
-				paiementService.removePaiement(paiementId);
+			public List<panierProduit> getPanierParPaiement(@PathVariable("paiement-id") Long paiementId) {
+				List<panierProduit> produits = PanierProdService.detailPanier(paiementId);
+				return produits;
 			}
-
-			//http://localhost:8080/SpringMVC/paiement/update-paiement
-			@PutMapping("/update-paiement")
-			@ResponseBody
-			public paiement updatePaiement(@RequestBody paiement p){	
-				paiement Paiement = paiementService.updatePaiement(p);
-				return Paiement;
-			}
+			
+			
 			
 }

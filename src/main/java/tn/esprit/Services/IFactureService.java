@@ -17,5 +17,7 @@ public interface IFactureService {
 	void imprimerFacture(Long factureId);
 
 	facture addFacture(facture f, Long idPaiement);
+
+	List<facture> retrieveFacturesByUser(Long idUser);
 	
 }

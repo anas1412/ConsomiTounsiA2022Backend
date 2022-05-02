@@ -2,66 +2,81 @@ package tn.esprit.Services;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tn.esprit.Entities.User;
 import tn.esprit.Entities.paiement;
-import tn.esprit.Entities.panier;
 import tn.esprit.Entities.panierProduit;
 import tn.esprit.Entities.produit;
 import tn.esprit.Repository.PaiementRepository;
-import tn.esprit.Repository.PanierRepository;
+import tn.esprit.Repository.PanierProduitRepository;
+import tn.esprit.Repository.UserRepository;
+import tn.esprit.Repository.produitRepository;
+import tn.esprit.Repository.stockRepository;
 
 
 @Service 
 public class paiementServiceImpl implements IPaiementService{
 	
 	@Autowired
-	PaiementRepository PaiementRepo;
+	PanierProduitRepository PanierProdRepo;
 	
 	@Autowired
-	PanierRepository PanierRepo;
+	UserRepository UserRepo;
+	
+	@Autowired
+	PaiementRepository PaiRepo;
+	
+	@Autowired
+	stockRepository StockRepo;
 	
 	@Override
 	public List<paiement> retrieveAllPaiement() {
 		// TODO Auto-generated method stub
-		return (List<paiement>) PaiementRepo.findAll();
+		return (List<paiement>) PaiRepo.findAll();
 	}
 
 	@Override
-	public paiement addPaiement(paiement p, Long idPanier) {
+	public paiement addPaiement(paiement pa, Long id) {
 		// TODO Auto-generated method stub
-		panier pa = PanierRepo.findById(idPanier).orElse(null);
-		p.setPanier(pa);
+		User u = UserRepo.findById(id).get();
+		List<panierProduit> produits = PanierProdRepo.findByUser(u);
 		
-		p.setNature(p.getNature());
-		p.setSomme_total(p.getSomme_total());
-		p.setDate(new Date());
-		PaiementRepo.save(p);
-		return p;
-	}
-
-	@Override
-	public paiement updatePaiement(paiement p) {
-		// TODO Auto-generated method stub
-		paiement pa = PaiementRepo.findById(p.getIdPaiement()).get();
-		pa.setNature(p.getNature());
-		pa.setSomme_total(p.getSomme_total());
-		
-		return PaiementRepo.save(p);
+		pa.setNature(pa.getNature());
+		pa.setSommetotal(pa.getSommetotal());
+		pa.setDate(new Date());
+		pa.setCard(pa.getCard());
+		pa.setCvc(pa.getCvc());
+		pa.setExp(pa.getExp());
+		pa.setUser(u);
+		pa.setProduits(produits);
+		PaiRepo.save(pa);
+		return pa;
 	}
 
 	@Override
 	public paiement retrievePaiement(Long idPaiement) {
 		// TODO Auto-generated method stub
-		return PaiementRepo.findById(idPaiement).orElse(null);
+		return PaiRepo.findById(idPaiement).orElse(null);
 	}
-
+	
+	
 	@Override
-	public void removePaiement(Long idPaiement) {
+	public List<paiement> retrievePaiementByUser(Long id) {
 		// TODO Auto-generated method stub
-		PaiementRepo.deleteById(idPaiement);
+		User u = UserRepo.findById(id).orElse(null);
+		return PaiRepo.findByUser(u);
+	}
+	
+	@Override
+	public List<panierProduit> detailPanier(Long paiement_id) {
+		paiement p = PaiRepo.findById(paiement_id).get();
+		List<panierProduit> panier = p.getProduits();
+		return panier;
 	}
 
 	

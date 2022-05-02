@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
+
 import tn.esprit.Entities.User;
 import tn.esprit.Entities.facture;
 import tn.esprit.Entities.paiement;
@@ -36,10 +38,10 @@ public class factureServiceImpl implements IFactureService{
 	@Override
 	public facture addFacture(facture f, Long idPaiement) {
 		// TODO Auto-generated method stub
-		
 		paiement p = PaiementRepo.findById(idPaiement).orElse(null);
+		User u = UserRepo.findById(p.getUser().getId()).orElse(null);
 		f.setPaiement(p);
-		
+		f.setUser(u);
 		f.setType(f.getType());
 		f.setEtat_livraison(f.getEtat_livraison());
 		f.setDate(new Date());
@@ -60,6 +62,14 @@ public class factureServiceImpl implements IFactureService{
 	public facture retrieveFacture(Long idFacture) {
 		// TODO Auto-generated method stub
 		return FactureRepo.findById(idFacture).orElse(null);
+	}
+	
+	@Override
+	public List<facture> retrieveFacturesByUser(Long idUser) {
+		// TODO Auto-generated method stub
+		User u = UserRepo.findById(idUser).orElse(null);
+		List<facture> factures = FactureRepo.findByUser(u);
+		return factures;
 	}
 
 	@Override

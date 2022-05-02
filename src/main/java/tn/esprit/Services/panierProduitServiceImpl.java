@@ -8,74 +8,73 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.Entities.User;
-import tn.esprit.Entities.panier;
 import tn.esprit.Entities.panierProduit;
 import tn.esprit.Entities.produit;
 import tn.esprit.Repository.PanierProduitRepository;
-import tn.esprit.Repository.PanierRepository;
 import tn.esprit.Repository.UserRepository;
 import tn.esprit.Repository.produitRepository;
 @Service
 public class panierProduitServiceImpl implements IPanierProduitService{
 	
 	@Autowired
-	PanierProduitRepository PanierProduitRepo;
+	PanierProduitRepository PanierProdRepo;
 	
 	@Autowired
 	UserRepository UserRepo;
 	
 	@Autowired
 	produitRepository ProduitRepo;
-	
-	@Autowired
-	PanierRepository PanierRepo;
+
+
+	@Override
+	public panierProduit addProduit(Long idProduit, int quantity, Long id) {
+		// TODO Auto-generated method stub
+		produit p = ProduitRepo.findById(idProduit).get();
+		User u = UserRepo.findById(id).get();
+		int addedQte = quantity;
+		
+		panierProduit pp = PanierProdRepo.findByUserAndProduit(u, p);
+		if (pp != null) {
+			addedQte = pp.getQuantity() + quantity;
+			pp.setQuantity(addedQte);
+			pp.setSomme(pp.getSomme()+(p.getPrix()*quantity));
+		}else {
+			pp = new panierProduit();
+			pp.setQuantity(quantity);
+			pp.setProduit(p);
+			pp.setUser(u);
+			pp.setSomme(p.getPrix()*quantity);
+		}
+		PanierProdRepo.save(pp);
+	    return pp;
+	}
+
 	
 	@Override
-	public List<panierProduit> retrieveAllPanierProduit() {
+	public void removeProduit(User user,Long idProduit) {
 		// TODO Auto-generated method stub
-		return (List<panierProduit>) PanierProduitRepo.findAll();
+		produit p = ProduitRepo.findById(idProduit).get();
+		//User u = UserRepo.findById(id).get();
+		PanierProdRepo.deleteByUserAndProduit(user.getId(),idProduit);
 	}
 
 	@Override
-	public panierProduit addPanierProduit(panierProduit pp, Long idProduit) {
+	public panierProduit updateQte(Long idProduit, int quantity, Long id) {
 		// TODO Auto-generated method stub
-		
-		produit p = ProduitRepo.findById(idProduit).orElse(null);
-		pp.setProduit(p);
-		
-		int q = pp.getQte();
-		pp.setQte(q);
-		
-		float s = p.getPrix();
-		pp.setSomme(s*q);
-		
-		PanierProduitRepo.save(pp);
-		return pp;
+		produit p = ProduitRepo.findById(idProduit).get();
+		User u = UserRepo.findById(id).get();
+		panierProduit pp = PanierProdRepo.findByUserAndProduit(u,p);
+		pp.setQuantity(quantity);
+		pp.setSomme(p.getPrix()*quantity);
+		PanierProdRepo.save(pp);
+	    return pp;
 	}
 	
 	@Override
-	public panierProduit updatePanierProduit(panierProduit pp) {
-		// TODO Auto-generated method stub
-		panierProduit panierproduit = PanierProduitRepo.findById(pp.getIdPanierProduit()).get();
-		int q = pp.getQte();
-		panierproduit.setQte(q);
-		
-		float p = pp.getProduit().getPrix();
-		panierproduit.setSomme(p*q);
-		return PanierProduitRepo.save(pp);
-	}
-		
-	@Override
-	public panierProduit retrievePanierProduit(Long idPanierProduit) {
-		// TODO Auto-generated method stub
-		return PanierProduitRepo.findById(idPanierProduit).orElse(null);
-	}
-	
-	@Override
-	public void removePanierProduit(Long idPanierProduit) {
-		// TODO Auto-generated method stub
-		PanierProduitRepo.deleteById(idPanierProduit);
-		
+	public List<panierProduit> detailPanier(Long user_id) {
+		User u = UserRepo.findById(user_id).get();
+		List<panierProduit> panier = PanierProdRepo.findByUser(u);
+		return panier;
 	}
 	
 }
