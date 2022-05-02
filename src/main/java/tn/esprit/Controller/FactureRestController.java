@@ -112,7 +112,7 @@ public class FactureRestController {
 			    public ResponseEntity<InputStreamResource> factureReport(@PathVariable("facture-id") Long idFacture) {
 					
 					facture f = factureService.retrieveFacture(idFacture);
-					List<panierProduit> panier = PaiService.detailPanier(idFacture) ;
+					List<panierProduit> panier = PaiService.detailPanier(f.getPaiement().getIdPaiement());
 			        ByteArrayInputStream bis = GeneratePdfReport.factureReport(f,panier);
 
 			        var headers = new HttpHeaders();

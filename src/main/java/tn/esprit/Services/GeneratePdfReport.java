@@ -99,6 +99,7 @@ public class GeneratePdfReport {
             PdfWriter.getInstance(document, out);
             document.open();
             
+            
             document.add(new Paragraph("Cher Client, "+f.getUser().getNom()+" "+f.getUser().getPrenom()));
             document.add(new Paragraph("Date: "+new Date().toString()));
             document.add(new Paragraph("\n"));
@@ -115,7 +116,7 @@ public class GeneratePdfReport {
             document.add(table);
             document.add(new Paragraph("Prix a payer: "+Float.toString(f.getPaiement().getSommetotal()))); 
             document.add(new Paragraph("\n"));
-            document.add(new Paragraph("A bientot."));
+            document.add(new Paragraph("Consomi tounsi et a bientot"));
 
             document.close();
 
