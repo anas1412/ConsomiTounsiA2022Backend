@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
 import tn.esprit.Entities.User;
+import tn.esprit.Entities.facture;
 import tn.esprit.Entities.panierProduit;
 import tn.esprit.Repository.UserRepository;
 import tn.esprit.Services.IPanierProduitService;
@@ -56,23 +57,21 @@ public class PanierProduitRestController {
 		}
 		
 		// http://localhost:8080/SpringMVC/panierproduit/updateQuantity/{produit-id}/{quantity}/{user-id}
-		@PutMapping("/updateQuantity/{produit-id}/{quantity}/{user-id}")
-		@ResponseBody
+		@PutMapping("/updateQuantity")
+		//@ResponseBody
 		public panierProduit updateQuantity(
-				@PathVariable("produit-id") long produitId,
-				@PathVariable("quantity") int quantity,
-				@PathVariable("user-id") long userId
+				@RequestBody panierProduit pp
 				) {
-			panierProduit pp = PanierProdService.updateQte(produitId,quantity,userId);
+			PanierProdService.updateQte(pp);
 			return pp;
 		}
 		
 		
 		//http://localhost:8080/SpringMVC/panierproduit/removeFromPanier/{user-id}/{produit-id}
-		@DeleteMapping("/removeFromPanier/{produit-id}")
+		@DeleteMapping("/removeFromPanier/{user-id}/{produit-id}")
 		@ResponseBody
-		public void removeFromPanier(@PathVariable("produit-id") Long produitId) {
-				Long userId = (long) 1;
+		public void removeFromPanier(@PathVariable("user-id") Long userId,
+				@PathVariable("produit-id") Long produitId) {
 				User u = UserRepo.findById(userId).get();
 				PanierProdService.removeProduit(u,produitId);
 		}

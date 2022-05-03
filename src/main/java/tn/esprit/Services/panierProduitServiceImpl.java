@@ -59,16 +59,17 @@ public class panierProduitServiceImpl implements IPanierProduitService{
 	}
 
 	@Override
-	public panierProduit updateQte(Long idProduit, int quantity, Long id) {
+	public panierProduit updateQte(panierProduit pp) {
 		// TODO Auto-generated method stub
-		produit p = ProduitRepo.findById(idProduit).get();
-		User u = UserRepo.findById(id).get();
-		panierProduit pp = PanierProdRepo.findByUserAndProduit(u,p);
-		pp.setQuantity(quantity);
-		pp.setSomme(p.getPrix()*quantity);
+		panierProduit pproduit = PanierProdRepo.findById(pp.getIdPanierProduit()).get();
+		produit p = ProduitRepo.findById(pp.getProduit().getIdProduit()).get();
+		
+		pproduit.setQuantity(pp.getQuantity());
+		pproduit.setSomme(p.getPrix()*pp.getQuantity());
 		PanierProdRepo.save(pp);
 	    return pp;
 	}
+
 	
 	@Override
 	public List<panierProduit> detailPanier(Long user_id) {
@@ -76,5 +77,6 @@ public class panierProduitServiceImpl implements IPanierProduitService{
 		List<panierProduit> panier = PanierProdRepo.findByUser(u);
 		return panier;
 	}
+
 	
 }

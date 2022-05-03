@@ -54,7 +54,7 @@ public class FactureRestController {
 	
 	
 	
-				//works all
+				//done
 				// http://localhost:8080/SpringMVC/facture/retrieve-all-facture
 				@GetMapping("/retrieve-all-facture")
 				@ResponseBody
@@ -62,6 +62,7 @@ public class FactureRestController {
 				List<facture> listFacture = factureService.retrieveAllFacture();
 				return listFacture;
 				}
+				
 
 				//http://localhost:8080/SpringMVC/facture/retrieve-facture/{facture-id}
 				@GetMapping("/retrieve-facture/{facture-id}")
@@ -83,6 +84,7 @@ public class FactureRestController {
 					return "facture/index";
 				}
 				
+				//done
 				//http://localhost:8080/SpringMVC/facture/add-facture
 				@PostMapping("/add-facture/{Paiement-id}")
 				@ResponseBody
@@ -91,13 +93,15 @@ public class FactureRestController {
 				    return Facture;
 				}
 				
+				//done
 				//http://localhost:8080/SpringMVC/facture/remove-facture/{facture-id}
 				@DeleteMapping("/remove-facture/{facture-id}")
 				@ResponseBody
 				public void removeFacture(@PathVariable("facture-id") Long factureId) {
 					factureService.retrieveFacture(factureId);
 				}
-
+				
+				//done
 				//http://localhost:4200/SpringMVC/facture/update-facture
 				@PutMapping("/update-facture")
 				@ResponseBody
@@ -106,7 +110,8 @@ public class FactureRestController {
 					return Facture;
 				}
 				
-				//http://localhost:4200/SpringMVC/facture/printPDF/{facture-id}
+				
+				//http://localhost:8080/SpringMVC/facture/printPDF/{facture-id}
 				@RequestMapping(value = "/printPDF/{facture-id}", method = RequestMethod.GET,
 			            produces = MediaType.APPLICATION_PDF_VALUE)
 			    public ResponseEntity<InputStreamResource> factureReport(@PathVariable("facture-id") Long idFacture) {

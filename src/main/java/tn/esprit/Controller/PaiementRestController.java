@@ -37,7 +37,22 @@ public class PaiementRestController {
 	@Autowired
 	IPanierProduitService PanierProdService;
 	
-			//works
+			@RequestMapping(method = RequestMethod.GET)
+			public String index(ModelMap modelMap) {
+				modelMap.put("paiement", paiementService.retrieveAllPaiement());
+				return "paiement/index";
+			}
+			
+			//done
+			//http://localhost:8080/SpringMVC/paiement/add-paiement/{user-id}
+			@PostMapping("/add-paiement/{user-id}")
+			@ResponseBody
+			public paiement addPaiement(@RequestBody paiement p, @PathVariable("user-id") Long userId){	
+				paiement Paiement = paiementService.addPaiement(p,userId);
+			    return Paiement;
+			}
+			
+			//done
 			// http://localhost:8080/SpringMVC/paiement/retrieve-all-paiement
 			@GetMapping("/retrieve-all-paiement")
 			@ResponseBody
@@ -46,6 +61,7 @@ public class PaiementRestController {
 			return listPaiement;
 			}
 			
+			//done
 			//http://localhost:8080/SpringMVC/paiement/retrieve-paiement/{paiement-id}
 			@GetMapping("/retrieve-paiement/{paiement-id}")
 			@ResponseBody
@@ -53,26 +69,6 @@ public class PaiementRestController {
 			return paiementService.retrievePaiement(paiementId);
 			}
 			
-			//http://localhost:8080/SpringMVC/paiement/retrieve-paiements-by-user/{user-id}
-			@GetMapping("/retrieve-paiements-by-user/{user-id}")
-			@ResponseBody
-			public List<paiement> retrievePaiementsByUser(@PathVariable("user-id") Long usertId) {
-			return paiementService.retrievePaiementByUser(usertId);
-			}
-	
-			@RequestMapping(method = RequestMethod.GET)
-			public String index(ModelMap modelMap) {
-				modelMap.put("paiement", paiementService.retrieveAllPaiement());
-				return "paiement/index";
-			}
-			
-			//http://localhost:8080/SpringMVC/paiement/add-paiement/{user-id}
-			@PostMapping("/add-paiement/{user-id}")
-			@ResponseBody
-			public paiement addPaiement(@RequestBody paiement p, @PathVariable("user-id") Long userId){	
-				paiement Paiement = paiementService.addPaiement(p,userId);
-			    return Paiement;
-			}
 			
 			// http://localhost:8080/SpringMVC/paiement/retrieve-paiement-produits/{paiement-id}
 			@GetMapping("/retrieve-paiement-produits/{paiement-id}")
@@ -82,6 +78,15 @@ public class PaiementRestController {
 				return produits;
 			}
 			
+			
+			
+			
+			//http://localhost:8080/SpringMVC/paiement/retrieve-paiements-by-user/{user-id}
+			@GetMapping("/retrieve-paiements-by-user/{user-id}")
+			@ResponseBody
+			public List<paiement> retrievePaiementsByUser(@PathVariable("user-id") Long usertId) {
+			return paiementService.retrievePaiementByUser(usertId);
+			}
 			
 			
 }
