@@ -1,18 +1,26 @@
 package tn.esprit.Services;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
+import tn.esprit.Entities.produit;
 import tn.esprit.Entities.stock;
+import tn.esprit.Repository.produitRepository;
 import tn.esprit.Repository.stockRepository;
 
 
@@ -24,6 +32,8 @@ public class stockServiceImpl implements IStockService{
 	
 	@Autowired
 	stockRepository StockRepo;
+	@Autowired
+	produitRepository ProdRepo;
 	@Autowired
 	private JavaMailSender javaMailSender;
 	
@@ -98,21 +108,31 @@ public class stockServiceImpl implements IStockService{
 
 	@Scheduled(cron = "*/15 * * * * *")
 	@Override
-	public void status() {
+	public void status() throws MessagingException, IOException{
 		SimpleMailMessage msg = new SimpleMailMessage();
+		MimeMessage msgHtml = javaMailSender.createMimeMessage();
+		
+		MimeMessageHelper helper = new MimeMessageHelper(msgHtml, true);
+	
+		
 		 List<stock> stocks= (List<stock>)StockRepo.findAll();
+		 
 	        if(stocks!=null) {
 	        for (stock stock : stocks){
 	        	
 	            if (stock.getQuantite()<=stock.getQuantiteMin()){
 	            	
 	            	//msg.setTo("nourmrad171199@gmail.com", "nourmrad171199@gmail.com");
-	            	msg.setTo(stock.getSupplier_mail(), stock.getSupplier_mail());
+	            	//msg.setTo(stock.getSupplier_mail(), stock.getSupplier_mail());
+	            	helper.setTo(stock.getSupplier_mail());
 	            	
-	                msg.setSubject("Testing from Spring Boot");
-	                msg.setText("Monsieur "+stock.getSupplier_name()+" produit "+ stock.getLibelleStock()+" est epuisé ");
-
-	                javaMailSender.send(msg);
+	               // msg.setSubject("Stock almost out!!!!");
+	            	helper.setSubject("Stock almost out!!!!");
+	            	
+	               // msg.setText("Monsieur "+stock.getSupplier_name()+" produit "+ stock.getLibelleStock()+" est epuisé ");
+	                helper.setText("<h1>Dear sir "+stock.getSupplier_name()+"</h1> the stock "+ stock.getLibelleStock()+" is almost out! ",true);
+	            	
+	                javaMailSender.send(msgHtml);
 
 	          
 	            }
