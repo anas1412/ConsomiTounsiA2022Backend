@@ -11,7 +11,7 @@ public interface IPanierProduitService {
 	
 	//panierProduit updateQte(Long idProduit, int quantity, Long id);
 
-	panierProduit addProduit(Long idProduit, int quantity, Long id);
+	//panierProduit addProduit(Long idProduit, int quantity, Long id);
 
 	List<panierProduit> detailPanier(Long user_id);
 
@@ -20,5 +20,9 @@ public interface IPanierProduitService {
 	//panierProduit updateQte(panierProduit pp, int quantity);
 
 	panierProduit updateQte(panierProduit pp);
+
+	panierProduit retrievePanierProduit(Long idPanierProduit);
+
+	panierProduit addProduit(panierProduit pp, Long idProduit, int quantity, Long id);
 	
 }

@@ -39,11 +39,10 @@ public class factureServiceImpl implements IFactureService{
 	public facture addFacture(facture f, Long idPaiement) {
 		// TODO Auto-generated method stub
 		paiement p = PaiementRepo.findById(idPaiement).orElse(null);
-		User u = UserRepo.findById(p.getUser().getId()).orElse(null);
 		f.setPaiement(p);
-		f.setUser(u);
-		f.setType(f.getType());
-		f.setEtat_livraison(f.getEtat_livraison());
+		f.setUser(p.getUser());
+		f.setType(p.getNature());
+		f.setEtat_livraison("Non Livré");
 		f.setDate(new Date());
 		FactureRepo.save(f);
 		return f;
@@ -52,7 +51,7 @@ public class factureServiceImpl implements IFactureService{
 	@Override
 	public facture updateFacture(facture f) {
 		// TODO Auto-generated method stub
-		facture fa = FactureRepo.findById(f.getIdFacture()).get();
+		facture fa = FactureRepo.findById(f.getIdFacture()).orElse(null);
 		fa.setType(f.getType());
 		fa.setEtat_livraison(f.getEtat_livraison());
 		return FactureRepo.save(f);

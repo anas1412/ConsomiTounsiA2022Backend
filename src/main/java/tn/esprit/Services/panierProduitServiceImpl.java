@@ -27,13 +27,13 @@ public class panierProduitServiceImpl implements IPanierProduitService{
 
 
 	@Override
-	public panierProduit addProduit(Long idProduit, int quantity, Long id) {
+	public panierProduit addProduit(panierProduit pp, Long idProduit, int quantity, Long id) {
 		// TODO Auto-generated method stub
 		produit p = ProduitRepo.findById(idProduit).get();
 		User u = UserRepo.findById(id).get();
 		int addedQte = quantity;
 		
-		panierProduit pp = PanierProdRepo.findByUserAndProduit(u, p);
+		pp = PanierProdRepo.findByUserAndProduit(u, p);
 		if (pp != null) {
 			addedQte = pp.getQuantity() + quantity;
 			pp.setQuantity(addedQte);
@@ -65,7 +65,9 @@ public class panierProduitServiceImpl implements IPanierProduitService{
 		produit p = ProduitRepo.findById(pp.getProduit().getIdProduit()).get();
 		
 		pproduit.setQuantity(pp.getQuantity());
-		pproduit.setSomme(p.getPrix()*pp.getQuantity());
+		//pproduit.setSomme(p.getPrix()*pp.getQuantity());
+		pproduit.setUser(pp.getUser());
+		pproduit.setProduit(pp.getProduit());
 		PanierProdRepo.save(pp);
 	    return pp;
 	}
@@ -75,6 +77,12 @@ public class panierProduitServiceImpl implements IPanierProduitService{
 	public List<panierProduit> detailPanier(Long user_id) {
 		User u = UserRepo.findById(user_id).get();
 		List<panierProduit> panier = PanierProdRepo.findByUser(u);
+		return panier;
+	}
+	
+	@Override
+	public panierProduit retrievePanierProduit(Long idPanierProduit) {
+		panierProduit panier = PanierProdRepo.findById(idPanierProduit).orElse(null);
 		return panier;
 	}
 

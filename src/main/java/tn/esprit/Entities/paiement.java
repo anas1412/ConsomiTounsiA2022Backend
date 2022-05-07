@@ -43,15 +43,17 @@ public class paiement implements Serializable {
 	
 	private float sommetotal;
 	
-	private int card;
+	private long card;
 	
 	private int cvc;
 	
 	private String exp;
 
+	//@JsonIgnore
 	@OneToMany
 	private List<panierProduit> produits;
 	
+	//@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;

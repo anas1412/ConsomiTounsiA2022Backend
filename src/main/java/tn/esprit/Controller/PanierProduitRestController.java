@@ -56,7 +56,15 @@ public class PanierProduitRestController {
 			return panier;
 		}
 		
-		// http://localhost:8080/SpringMVC/panierproduit/updateQuantity/{produit-id}/{quantity}/{user-id}
+		// http://localhost:8080/SpringMVC/panierproduit/getPanierProduit/{panierproduit-id}
+		@GetMapping("/getPanierProduit/{panierproduit-id}")
+		@ResponseBody
+		public panierProduit getPanierProduit(@PathVariable("panierproduit-id") long ppid) {
+					panierProduit pp = PanierProdService.retrievePanierProduit(ppid);
+					return pp;
+				}
+		
+		// http://localhost:8080/SpringMVC/panierproduit/updateQuantity/
 		@PutMapping("/updateQuantity")
 		//@ResponseBody
 		public panierProduit updateQuantity(

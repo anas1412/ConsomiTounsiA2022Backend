@@ -43,7 +43,7 @@ public class paiementServiceImpl implements IPaiementService{
 	@Override
 	public paiement addPaiement(paiement pa, Long id) {
 		// TODO Auto-generated method stub
-		User u = UserRepo.findById(id).get();
+		User u = UserRepo.findById(id).orElse(null);
 		List<panierProduit> produits = PanierProdRepo.findByUser(u);
 		
 		pa.setNature(pa.getNature());

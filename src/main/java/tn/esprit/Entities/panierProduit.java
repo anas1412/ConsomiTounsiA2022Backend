@@ -47,6 +47,7 @@ public class panierProduit implements Serializable {
 	@JoinColumn(name = "user_id")
 	private User user;	
 	
+	//@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "produit_id")
 	private produit produit;
