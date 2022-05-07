@@ -106,7 +106,7 @@ public class stockServiceImpl implements IStockService{
 	
 	
 
-	@Scheduled(cron = "*/15 * * * * *")
+	//@Scheduled(cron = "*/15 * * * * *")
 	@Override
 	public void status() throws MessagingException, IOException{
 		SimpleMailMessage msg = new SimpleMailMessage();
@@ -127,7 +127,7 @@ public class stockServiceImpl implements IStockService{
 	            	helper.setTo(stock.getSupplier_mail());
 	            	
 	               // msg.setSubject("Stock almost out!!!!");
-	            	helper.setSubject("Stock almost out!!!!");
+	            	helper.setSubject("Stock almost out!");
 	            	
 	               // msg.setText("Monsieur "+stock.getSupplier_name()+" produit "+ stock.getLibelleStock()+" est epuisé ");
 	                helper.setText("<h1>Dear sir "+stock.getSupplier_name()+"</h1> the stock "+ stock.getLibelleStock()+" is almost out! ",true);
