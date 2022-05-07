@@ -157,9 +157,6 @@ public class LivreurServiceImp implements ILivreurService {
 	            MessageCreator creator = Message.creator(to, from, message);
 	            creator.create();
 		LivreurRepo.save(l);
-	
-		
-		
 	}
 
 
