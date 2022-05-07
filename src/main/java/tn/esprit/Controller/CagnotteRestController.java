@@ -57,5 +57,11 @@ public class CagnotteRestController {
 	public Cagnotte updateCagnotte(@RequestBody Cagnotte c) {
 	return cagnotteInterface.updateCagnotte(c);
 	}
+	
+	@PutMapping("/modify-somme")
+	@ResponseBody
+	public Cagnotte updateSomme(@RequestBody Cagnotte c) {
+	return cagnotteInterface.updateSomme(c);
+	}
 
 }

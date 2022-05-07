@@ -41,4 +41,11 @@ public class User implements Serializable {
 	
 	@ManyToMany (cascade = CascadeType.ALL)
 	private Set<Role> roles;
+	
+	/* @ManyToMany(mappedBy="users",cascade = CascadeType.ALL)
+	private Set<Cagnotte> cagnottes;*/
+	/*
+	@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
+	private Set <Event> events;
+	*/
 }

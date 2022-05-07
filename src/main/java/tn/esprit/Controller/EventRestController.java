@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.v3.oas.models.media.MediaType;
 import tn.esprit.QRcodeGenerator;
 import tn.esprit.Entities.Event;
+//import tn.esprit.Entities.Reservation;
 import tn.esprit.Repository.EventRepository;
 import tn.esprit.Services.IEventService;
 
@@ -48,10 +49,13 @@ public class EventRestController {
 	
 	@GetMapping("/getAllEvent")
 	@ResponseBody
-	public List<Event> getDons() {
+	public List<Event> getAll() {
 	List<Event> listevent = eventInterface.retrieveAllEvents();
 	return listevent;
 	}
+	
+	
+	
 	
 	
 
@@ -59,6 +63,13 @@ public class EventRestController {
 	@ResponseBody
 	public Collection<Event> getActive() {
 		Collection<Event> listevent = eventInterface.retrieveAllEventsActive();
+	return listevent;
+	}
+	
+	@GetMapping("/getEventByCagnotte")
+	@ResponseBody
+	public Collection<Event> getEventByCagnotte() {
+		Collection<Event> listevent = eventInterface.findEventByCagnotte();
 	return listevent;
 	}
 	
@@ -108,26 +119,28 @@ public class EventRestController {
 		
 	}
 	
-	
-	/* @RequestMapping("/QRcodeEvent")
-	@RestController
-	public class QRCodeGenController {
-		@Autowired
-		EventRepository eventrepo;
-	
-	@PostMapping(value = "/Generated/{idEvent-id}",produces = org.springframework.http.MediaType.IMAGE_PNG_VALUE)
-	public ResponseEntity<BufferedImage> QRcode(@PathVariable(name = "labelle") String labelle)throws Exception{
-		//Event tr=eventrepo.getById(tr.getIdEvent());
-	return successResponse(QRcodeGenerator.generateQRcode(labelle));
+/*	
+	@PostMapping("/FaireReservation/{idReservation}/{idUser}/{idEvent}")
+	public void FaireReservation(@PathVariable("idReservation")Long idreservation,@PathVariable("idUser") Long idUser,
+	@PathVariable("idEvent") Long idEvent) {
+		eventInterface.FaireReservation(idreservation,idUser, idEvent);
 	}
-	private ResponseEntity<BufferedImage>successResponse(BufferedImage image){
-	return new ResponseEntity<>(image,HttpStatus.OK);
-	}
-	@Bean
-	public HttpMessageConverter<BufferedImage>createImageHttpMessageConverter(){
-	return new BufferedImageHttpMessageConverter();
-	}
+	*/
 	
-	} */
+	@GetMapping("/getNbParticipant/{id}")
+	@ResponseBody
 
+	public int NombreParticpEvent(@PathVariable("id") int idEvent) {
+		
+		return eventInterface.getNombreParticpEvent(idEvent);
+	}
+	
+	@GetMapping("/getNbPlace/{id}")
+	@ResponseBody
+
+	public int NombrePlace(@PathVariable("id") int idEvent) {
+		
+		return eventInterface.getNombrePlacesEvent(idEvent);
+	}
+	
 }

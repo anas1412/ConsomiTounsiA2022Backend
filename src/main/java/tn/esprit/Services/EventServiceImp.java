@@ -7,14 +7,20 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import tn.esprit.Entities.Cagnotte;
 import tn.esprit.Entities.Event;
-
+import tn.esprit.Entities.User;
+// import tn.esprit.Entities.User;
 import tn.esprit.Repository.CagnotteRepository;
 import tn.esprit.Repository.EventRepository;
+import tn.esprit.Repository.UserRepository;
+
+// import tn.esprit.Repository.UserRepository;
+
 
 
 @Service
@@ -24,6 +30,10 @@ public class EventServiceImp implements IEventService {
 	EventRepository eventRepository;
 	@Autowired
 	CagnotteRepository cagnotteRepository;
+	@Autowired
+	UserRepository userRepository;
+	
+	
 	
 	
 	@Override
@@ -124,11 +134,11 @@ public class EventServiceImp implements IEventService {
 
 	@Override
 	public void updateEtat() {
-		/*Event e = new Event();
-		eventRepository.updateEtat();*/ 
+		//Event e = new Event();
+		eventRepository.updateEtat(new Date());
 		
 		
-		
+		/*
 		Collection<Event> eventList = eventRepository.findAllActiveEvents();
 		Date d = new Date();
 		DateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -143,9 +153,75 @@ public class EventServiceImp implements IEventService {
 					}
 		}
 		
-		
+		*/
 		
 	}
+
+	@Override
+	public Collection<Event> findEventByCagnotte() {
+		Collection<Event> eventList = eventRepository.findEventByCagnotte();
+		for(Event event : eventList) {
+			log.info(event.toString());
+			System.out.println(event.toString());
+		
+		}
+		return eventList;
+	}
+	
+	@Scheduled(cron = "*/60 * * * * *")
+	@Override
+    public void ExpiredEvent() {
+       
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        Date now = new Date();
+      String msgDate = sdf.format(now.getMonth());
+       /* String finalMessage = "";
+        String newLine = System.getProperty("line.separator");*/
+        String s = sdf.format(now);
+   
+        List<Event> eventExpiree = this.retrieveAllEvents();
+       
+        for (int i = 0; i < eventExpiree.size(); i++) {
+            String a = eventExpiree.get(i).getDateFin().toString();
+            
+            if(a == s ) {
+            	eventExpiree.get(i).setEtat(1);
+            }
+        }
+        
+    }
+	
+	@Override
+	public int getNombrePlacesEvent(int idevent){
+		return eventRepository.NombrePlacesEvent(idevent);		
+	}
+	
+	@Override
+	public int getNombreParticpEvent(int idevent){
+		return eventRepository.NombreParticpEvent(idevent);
+	}
+
+	@Override
+	public Event addEvent(Event e, Long idCagnotte, Long idUser) {
+		Cagnotte c = cagnotteRepository.findById(idCagnotte).orElse(null);
+		User u = userRepository.findById(idUser).orElse(null);
+		e.setUser(u);
+		 //  c.setIdCagnotte(idCagnotte);
+		   e.setDateDebut(new Date());
+		   e.setDateFin(new Date());
+		   e.setDescription(e.getDescription());
+		   e.setCagnotte(c);
+		 
+		   
+		   eventRepository.save(e);
+			
+		  
+		   return e;
+	}
+	
+	
+
+	
 }
 
 	

@@ -8,7 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -30,11 +34,18 @@ public class Cagnotte implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idCagnotte;
 	String labelle;
-	Long totalSomme;
+	int totalsomme;
 	int etat;
+	@Temporal(TemporalType.DATE)
+	Date dateCreation;
 	
-@JsonIgnore
+
+	@JsonIgnore
 	@OneToOne(mappedBy="cagnotte")
+
 	private Event event;
+	@JsonIgnore
+	@ManyToOne
+	 User user;
 
 }

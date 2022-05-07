@@ -42,13 +42,17 @@ public class Event implements Serializable {/**
 	String lieu ;
 	int etat;
 	String image;
+	private int nbparticipant; 
+	private int nbplace ;
 	
 	@JsonIgnore
 	@OneToOne
 	private Cagnotte cagnotte;
 	
-/*	@ManyToOne
-	private User user;
-	*/
+	@JsonIgnore
+	@ManyToOne
+	 User user;
+	
+	
 
 }
