@@ -24,6 +24,7 @@ import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 import tn.esprit.Entities.User;
 import tn.esprit.Entities.facture;
 import tn.esprit.Entities.panierProduit;
+import tn.esprit.Entities.produit;
 import tn.esprit.Repository.UserRepository;
 import tn.esprit.Services.IPanierProduitService;
 import tn.esprit.helpers.ZXingHelper;
@@ -43,8 +44,8 @@ public class PanierProduitRestController {
 	
 		//http://localhost:8080/SpringMVC/panierproduit/addToPanier/{produit-id}/{qte}/{user-id}
 		@PostMapping("/addToPanier/{produit-id}/{qte}/{user-id}")
-		public panierProduit addToPanier(@PathVariable("produit-id") Long produitId, @PathVariable("qte") int quantity, @PathVariable("user-id") Long userId) {
-			panierProduit pp = PanierProdService.addProduit(produitId,quantity,userId);
+		public panierProduit addToPanier(@RequestBody panierProduit pp,@PathVariable("produit-id") Long produitId, @PathVariable("qte") int quantity, @PathVariable("user-id") Long userId) {
+			pp = PanierProdService.addProduit(pp, produitId,quantity,userId);
 			return pp ;
 		}
 		
