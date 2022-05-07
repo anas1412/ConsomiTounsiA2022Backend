@@ -33,10 +33,11 @@ public class Livraison implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idLivraison;
-	private Date DateLiv;
-	private String Adresse;
-	private float Frais;
+	private Long idLivraison;
+	private Date dateLiv;
+	private String adresse;
+	private float frais;
+	private boolean statusLiv;
 	
 	@JsonIgnore
 	@OneToOne
@@ -47,6 +48,9 @@ public class Livraison implements Serializable {
 	
 	
 @OneToMany(cascade = CascadeType.ALL , mappedBy="livraison")
-	private Set<Reclamation>ListReclamations;	
+	private Set<Reclamation>ListReclamations;
+
+
+
 
 }

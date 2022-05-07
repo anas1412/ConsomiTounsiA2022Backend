@@ -1,7 +1,9 @@
 package tn.esprit.Entities;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -20,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+
 @Entity
 @Getter
 @Setter
@@ -31,18 +34,30 @@ public class Livreur implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idLivreur;
+	private Long idLivreur;
 	
-	private String Nom;
-	private String Prenom;
-	private int Telephone;
-	private String Ville;
-	private int NbLivraison;
-	private Date DateAjout;
-	private String StatutCompte;
+	private String nom;
+	private String prenom;
+	private String telephone;
+	private String ville;
+	private int nbLivraison;
+	private Date dateAjout;
+	private boolean statutCompte;
+	private String adresseEmail;
+	private String mdp;
+	private String imgURL;
+	private String message;
 	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="livreur")
-	private Set<Livraison> Livraison;
+	private List <Livraison> ListLivraisons;
+
+	@Override
+    public String toString() {
+        return "SmsRequest{" +
+                "phoneNumber= ..." + '\'' +
+                ", message='" + message + '\'' +
+                '}';
+    }
 	
 }

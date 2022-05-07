@@ -41,5 +41,5 @@ public class Role {
 		}
 
 		@ManyToMany (mappedBy="roles", cascade = CascadeType.ALL)
-		private Set<User> users;
+		private Set<User> user;
 }

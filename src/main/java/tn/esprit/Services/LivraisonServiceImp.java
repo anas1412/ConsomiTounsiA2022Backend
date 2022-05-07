@@ -1,13 +1,14 @@
 package tn.esprit.Services;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.Entities.facture;
-import tn.esprit.Entities.produit;
 import tn.esprit.Entities.Livraison;
 import tn.esprit.Entities.Livreur;
 
@@ -30,26 +31,19 @@ public class LivraisonServiceImp implements ILivraisonService{
 		return (List<Livraison>) LivraisonRepo.findAll();
 	}
 
-/*	@Override
-	public Livraison updateLivraison(Livraison liv, Long idFacture, Long idLivreur) {
-		// TODO Auto-generated method stub
-		return LivraisonRepo.save(liv);
-	}*/
-	
 	@Override
 	public Livraison updateLivraison(Livraison liv) {
+		// TODO Auto-generated method stub
 		Livraison livraison = LivraisonRepo.findById(liv.getIdLivraison()).get();
-		
-		livraison.setLivreur(liv.getLivreur());
-		livraison.setIdLivraison(liv.getIdLivraison());
 		livraison.setAdresse(liv.getAdresse());
-		livraison.setDateLiv(liv.getDateLiv());
 		livraison.setFacture(liv.getFacture());
 		livraison.setFrais(liv.getFrais());
-		LivraisonRepo.save(liv);
-		return liv;
-				
+		livraison.setLivreur(liv.getLivreur());
+		livraison.setStatusLiv(true);
+		livraison.setListReclamations(liv.getListReclamations());
+		return LivraisonRepo.save(liv);
 	}
+	
 	
 
 	@Override
@@ -70,7 +64,46 @@ public class LivraisonServiceImp implements ILivraisonService{
 		LivraisonRepo.save(liv);
 		return liv;
 	}
-
-	
+	@Override
+	public void removeLivraison(Long idLivraison) {
+		// TODO Auto-generated method stub
+		LivraisonRepo.deleteById(idLivraison);
+		
 	}
+	
+	@Override
+	public List<Livraison> FindByIdLivreur(Long idLivreur) {
+		return (List<Livraison>) LivraisonRepo.findByIdLivreur(idLivreur);
+
+	}
+	@Override
+	public List<Livraison> findByDate(Date  DateLiv) {
+		return (List<Livraison>) LivraisonRepo.findByDate( DateLiv);
+	}
+	@Override
+	public List<Livraison> orderByDate() {
+		return (List<Livraison>)LivraisonRepo.orderByDate();
+
+	}
+	
+	@Override
+	public Livraison deliverLivraison(Long idLivraison) {
+		Livraison livraison= LivraisonRepo.findById(idLivraison).get();
+		 livraison.setStatusLiv(true);
+		 LivraisonRepo.save(livraison);
+		return  livraison;
+	}
+	@Override
+	public int CountDelivered() {
+         int x= LivraisonRepo.CountDelivered();
+         return x;
+	}
+	@Override
+	public int CountUndelivered() {
+        int x= LivraisonRepo.CountUndelivered();
+		return x;
+	}
+}
+	
+
 
