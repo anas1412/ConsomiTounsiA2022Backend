@@ -14,9 +14,9 @@ import lombok.extern.slf4j.Slf4j;
 import tn.esprit.Entities.Cagnotte;
 import tn.esprit.Entities.Event;
 import tn.esprit.Entities.User;
-// import tn.esprit.Entities.User;
 import tn.esprit.Repository.CagnotteRepository;
 import tn.esprit.Repository.EventRepository;
+// import tn.esprit.Entities.User;
 import tn.esprit.Repository.UserRepository;
 
 // import tn.esprit.Repository.UserRepository;
@@ -32,6 +32,8 @@ public class EventServiceImp implements IEventService {
 	CagnotteRepository cagnotteRepository;
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	private MailSendService mailSendService ;
 	
 	
 	
@@ -55,6 +57,8 @@ public class EventServiceImp implements IEventService {
 		   e.setDescription(e.getDescription());
 		  // e.setCagnotte(c);
 		e.setEtat(0);
+		   mailSendService.sendEmail("ghassen.riahi@esprit.tn","Félicitation, votre évènement est ajouter avec succés"+e.getLabelle(),"Evénement Ajouté avec succés");
+		
 		return eventRepository.save(e);
 	}
 
@@ -100,7 +104,7 @@ public class EventServiceImp implements IEventService {
 	 
 	   
 	   eventRepository.save(e);
-		
+	   mailSendService.sendEmail("ghassen.riahi@esprit.tn","Félicitation, votre évènement est ajouter avec succés"+c.getLabelle(),"vérifier votre évènement");
 	  
 	   return e;
 	}
@@ -116,6 +120,7 @@ public class EventServiceImp implements IEventService {
 		 
 		   
 		   eventRepository.save(e);
+		   mailSendService.sendEmail("ghassen.riahi@esprit.tn","Félicitation, votre évènement est ajouter avec succés"+c.getLabelle(),"vérifier votre évènement");
 			
 		  
 		   return e;
@@ -214,11 +219,13 @@ public class EventServiceImp implements IEventService {
 		 
 		   
 		   eventRepository.save(e);
+		   mailSendService.sendEmail("ghassen.riahi@esprit.tn","Félicitation, votre évènement est ajouter avec succés"+c.getLabelle(),"vérifier votre évènement");
 			
 		  
 		   return e;
 	}
-	
+
+
 	
 
 	
