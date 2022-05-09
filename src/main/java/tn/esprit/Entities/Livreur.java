@@ -46,18 +46,11 @@ public class Livreur implements Serializable{
 	private String adresseEmail;
 	private String mdp;
 	private String imgURL;
-	private String message;
+	
 	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="livreur")
 	private List <Livraison> ListLivraisons;
 
-	@Override
-    public String toString() {
-        return "SmsRequest{" +
-                "phoneNumber= ..." + '\'' +
-                ", message='" + message + '\'' +
-                '}';
-    }
 	
 }

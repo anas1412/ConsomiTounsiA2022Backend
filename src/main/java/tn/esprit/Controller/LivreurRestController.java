@@ -94,12 +94,6 @@ public class LivreurRestController {
 	    	return LivreurService.findByCity(Ville);
 	    }
 	    
-	 /*   @PutMapping("/sendSMS") 
-	    @ResponseBody
-		@ApiOperation(value = "SMS notif ")
-		public void sendSMSforLivreur(@RequestBody Livreur l) {
-	    	LivreurService.NotifyLivreurBySMS(l);
-		}*/
 		@PutMapping("/AssignLivreurToLivraison/{idLivraison}/{idLivreur}")
 		@ResponseBody
 		public void AssignLivreurToLivraison(@PathVariable("idLivraison")Long idLivraison,@PathVariable("idLivreur") Long idLivreur) {

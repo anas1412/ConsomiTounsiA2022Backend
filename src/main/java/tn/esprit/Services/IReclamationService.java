@@ -1,5 +1,6 @@
 package tn.esprit.Services;
 
+import java.util.Date;
 import java.util.List;
 
 import tn.esprit.Entities.Reclamation;
@@ -26,4 +27,6 @@ public interface IReclamationService {
 	void traiterReclamation2();
 	
 	void traiterReclamation3();
+	
+	
 }
