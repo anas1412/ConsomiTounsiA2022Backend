@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.Entities.User;
 import tn.esprit.Repository.UserRepository;
 
+import java.util.List;
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
@@ -37,4 +39,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public void updateUser(User user){
         userRepository.save(user);
     }
+
+    public List<User> getList(){
+      return    userRepository.findAll();}
+
 }

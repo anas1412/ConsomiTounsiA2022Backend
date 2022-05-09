@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 
 
@@ -135,7 +136,6 @@ public class AuthController {
     }
 
 
-
     @DeleteMapping("deleteUser/{id}")
     public void deleteUser(@PathVariable("id") Long id) {
         userDetailsService.deleteUser(id);
@@ -149,6 +149,11 @@ public class AuthController {
     @PutMapping("updateUser")
     public void updateUser(User user) {
         userDetailsService.updateUser(user);
+    }
+
+    @GetMapping("ListUser")
+    public List<User> getList() {
+        return userDetailsService.getList();
     }
 
 
