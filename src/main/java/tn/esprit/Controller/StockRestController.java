@@ -3,13 +3,12 @@ package tn.esprit.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< HEAD
+
 
 import org.springframework.data.repository.query.Param;
 import org.springframework.ui.Model;
 
-=======
->>>>>>> origin/eventBranch
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-<<<<<<< HEAD
+
 import io.swagger.annotations.ApiOperation;
 import tn.esprit.Entities.stock;
 import tn.esprit.Services.IStockService;
@@ -29,12 +28,6 @@ import tn.esprit.Services.IStockService;
 
 @CrossOrigin(origins = "*")
 
-=======
-import tn.esprit.Entities.stock;
-import tn.esprit.Services.IStockService;
-
-@CrossOrigin(origins = "http://localhost:4200")
->>>>>>> origin/eventBranch
 @RestController
 @RequestMapping("/stock")
 public class StockRestController {
@@ -46,10 +39,9 @@ public class StockRestController {
 	// http://localhost:8080/SpringMVC/stock/retrieve-all-stocks
 	@GetMapping("/retrieve-all-stocks")
 	@ResponseBody
-<<<<<<< HEAD
+
 	@ApiOperation(value = "Récupérer la liste des stocks")
-=======
->>>>>>> origin/eventBranch
+
 	public List<stock> getStocks() {
 	List<stock> listStocks = stockService.retrieveAllStock();
 	return listStocks;
@@ -58,10 +50,9 @@ public class StockRestController {
 	//http://localhost:8080/SpringMVC/stock/retrieve-stock/8
 	@GetMapping("/retrieve-stock/{stock-id}")
 	@ResponseBody
-<<<<<<< HEAD
+
 	@ApiOperation(value = "Récupérer les données de stock")
-=======
->>>>>>> origin/eventBranch
+
 	public stock retrieveStock(@PathVariable("stock-id") Long stockId) {
 	return stockService.retrieveStock(stockId);
 	}
@@ -69,10 +60,9 @@ public class StockRestController {
 	//http://localhost:8080/SpringMVC/stock/add-stock
 	@PostMapping("/add-stock")
 	@ResponseBody
-<<<<<<< HEAD
+
 	@ApiOperation(value = "Ajouter stock")
-=======
->>>>>>> origin/eventBranch
+
 	public stock addStock(@RequestBody stock s)
 	{
 	stock stock = stockService.addStock(s);
@@ -89,15 +79,14 @@ public class StockRestController {
 	//http://localhost:8080/SpringMVC/stock/modify-stock/@stock-id}
 	@PutMapping("/modify-stock")
 	@ResponseBody
-<<<<<<< HEAD
+
 	@ApiOperation(value = "Modifier stock")
-=======
->>>>>>> origin/eventBranch
+
 	public stock modifyOperateur(@RequestBody stock stock) {
 	return stockService.updateStock(stock);
 	}
 
-<<<<<<< HEAD
+
 	@RequestMapping("/")
     public String viewHomePage(Model model, @Param("keyword") String keyword) {
         List<stock> listStocks = stockService.listAll(keyword);
@@ -106,8 +95,6 @@ public class StockRestController {
          
         return "index";
     }
-=======
-	
->>>>>>> origin/eventBranch
+
 	
 }

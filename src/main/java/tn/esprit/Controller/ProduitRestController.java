@@ -6,13 +6,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< HEAD
+
 
 import org.springframework.data.repository.query.Param;
 import org.springframework.ui.Model;
 
-=======
->>>>>>> origin/eventBranch
+
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,13 +29,12 @@ import tn.esprit.Entities.produit;
 import tn.esprit.Services.IProduitServices;
 import tn.esprit.helpers.ZXingHelper;
 
-<<<<<<< HEAD
+
 
 @CrossOrigin(origins = "*")
 
-=======
-@CrossOrigin(origins = "http://localhost:4200")
->>>>>>> origin/eventBranch
+
+
 @RestController
 @RequestMapping("/produit")
 public class ProduitRestController {
@@ -76,7 +74,7 @@ public class ProduitRestController {
 		outputStream.flush();
 		outputStream.close();
 	}
-<<<<<<< HEAD
+
 
 
 	
@@ -97,18 +95,7 @@ public class ProduitRestController {
 	{	
         
 		produit Produit = produitService.addProduit(p,idStock,idUser);
-=======
-	/*<td>
-	<img src="${pageContext.request.contextPath }/product/barcode/${product.id }" width="200" height="50">
-</td*/
-	
-	//http://localhost:8080/SpringMVC/produit/add-produit
-	@PostMapping("/add-produit/{categorie-id}/{stock-id}/{user-id}")
-	@ResponseBody
-	public produit addProduit(@RequestBody produit p,@PathVariable("categorie-id") Long idCategorie,@PathVariable("stock-id")Long idStock,@PathVariable("user-id")Long idUser)
-	{	
-		produit Produit = produitService.addProduit(p,idCategorie,idStock,idUser);
->>>>>>> origin/eventBranch
+
 	    return Produit;
 	}
 	
@@ -118,11 +105,9 @@ public class ProduitRestController {
 	@DeleteMapping("/remove-produit/{produit-id}")
 	@ResponseBody
 	public void removeProduit(@PathVariable("produit-id") Long produitId) {
-<<<<<<< HEAD
+
 		produitService.deleteProduit(produitId);
-=======
-		produitService.retrieveProduit(produitId);
->>>>>>> origin/eventBranch
+
 	}
 
 	//http://localhost:8080/SpringMVC/produit/modify-produit
@@ -133,7 +118,7 @@ public class ProduitRestController {
 		produit Produit = produitService.updateProduit(p);
 	return Produit;
 	}
-<<<<<<< HEAD
+
 	
 	// http://localhost:8090/SpringMVC/produit/GetProduitByIdUser/{user-id}
 	 @GetMapping("/GetProduitByIdUser/{user-id}")
@@ -159,8 +144,6 @@ public class ProduitRestController {
 			produitService.AssagnProductStock(idStock, idProduct);
 		
 		}
-=======
 
->>>>>>> origin/eventBranch
 	
 }

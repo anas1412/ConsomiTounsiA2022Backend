@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +33,9 @@ public class EventServiceImp implements IEventService {
 	CagnotteRepository cagnotteRepository;
 	@Autowired
 	UserRepository userRepository;
-	@Autowired
-	private MailSendService mailSendService ;
+
+	//@Autowired
+	//private MailSendService mailSendService ;
 	
 	
 	
@@ -48,6 +50,7 @@ public class EventServiceImp implements IEventService {
 		return eventList;
 	}
 
+
 	@Override
 	public Event addEvent(Event e) {
 		//Cagnotte c = cagnotteRepository.findById(idCagnotte).orElse(null);
@@ -57,7 +60,7 @@ public class EventServiceImp implements IEventService {
 		   e.setDescription(e.getDescription());
 		  // e.setCagnotte(c);
 		e.setEtat(0);
-		   mailSendService.sendEmail("ghassen.riahi@esprit.tn","Félicitation, votre évènement est ajouter avec succés"+ " " +e.getLabelle(),"Evénement Ajouté avec succés");
+		   //mailSendService.sendEmail("ghassen.riahi@esprit.tn","Félicitation, votre évènement est ajouter avec succés"+ " " +e.getLabelle(),"Evénement Ajouté avec succés");
 		
 		return eventRepository.save(e);
 	}
@@ -104,7 +107,7 @@ public class EventServiceImp implements IEventService {
 	 
 	   
 	   eventRepository.save(e);
-	   mailSendService.sendEmail("ghassen.riahi@esprit.tn","Félicitation, L'évènement "+c.getLabelle()+" est ajouter avec succés","Ajout d'évènement");
+	   //mailSendService.sendEmail("ghassen.riahi@esprit.tn","Félicitation, L'évènement "+c.getLabelle()+" est ajouter avec succés","Ajout d'évènement");
 	  
 	   return e;
 	}
@@ -120,7 +123,7 @@ public class EventServiceImp implements IEventService {
 		 
 		   
 		   eventRepository.save(e);
-		   mailSendService.sendEmail("ghassen.riahi@esprit.tn","Félicitation, L'évènement "+c.getLabelle()+" est ajouter avec succés , veuillez le consulter","Ajout d'un évènement");
+		   //mailSendService.sendEmail("ghassen.riahi@esprit.tn","Félicitation, L'évènement "+c.getLabelle()+" est ajouter avec succés , veuillez le consulter","Ajout d'un évènement");
 			
 		  
 		   return e;
@@ -219,7 +222,7 @@ public class EventServiceImp implements IEventService {
 		 
 		   
 		   eventRepository.save(e);
-		   mailSendService.sendEmail("ghassen.riahi@esprit.tn","Félicitation , L'évènement "+c.getLabelle()+ " est ajouter avec succés par "+ e.getUser().getUsername()+" , veuillez le consulter" ,"Ajout d un évènement");
+		   //mailSendService.sendEmail("ghassen.riahi@esprit.tn","Félicitation , L'évènement "+c.getLabelle()+ " est ajouter avec succés par "+ e.getUser().getUsername()+" , veuillez le consulter" ,"Ajout d un évènement");
 			
 		  
 		   return e;
