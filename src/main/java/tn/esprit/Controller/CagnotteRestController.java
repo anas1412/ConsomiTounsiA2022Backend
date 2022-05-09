@@ -46,6 +46,16 @@ public class CagnotteRestController {
 	return cagnotte;
 	}
 	
+	@PostMapping("/add-getCagnotte-user/{user-id}")
+	@ResponseBody
+	public Cagnotte addCagnotteUser(@RequestBody Cagnotte c,@PathVariable("user-id")Long idUser)
+	{
+		Cagnotte cagnotte = cagnotteInterface.addCagnotteUser(c,idUser);
+	return cagnotte;
+	}
+
+	
+	
 	@DeleteMapping("/remove-cagnotte/{idCagnotte-id}")
 	@ResponseBody
 	public void removeCagnotte(@PathVariable("idCagnotte-id") Long idCagnotte) {
