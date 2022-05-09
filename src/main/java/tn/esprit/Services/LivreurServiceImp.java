@@ -12,17 +12,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.twilio.Twilio;
-import com.twilio.rest.api.v2010.account.Message;
-import com.twilio.rest.api.v2010.account.MessageCreator;
-import com.twilio.type.PhoneNumber;
 
-import tn.esprit.Configuration.TwilioConfiguration;
+
+
 import tn.esprit.Entities.Livraison;
 import tn.esprit.Entities.Livreur;
 import tn.esprit.Entities.Reclamation;
-import tn.esprit.Entities.SmsRequest;
-import tn.esprit.Entities.TwilioSmsSender;
+
 import tn.esprit.Repository.LivraisonRepository;
 import tn.esprit.Repository.LivreurRepository;
 
@@ -36,21 +32,6 @@ public class LivreurServiceImp implements ILivreurService {
 	@Autowired
 	LivraisonRepository LivraisonRepo;
 	
-	  @Value("${accountSID}")
-	    private String accountSID;
-	 
-	  @Value("${accountAuthToken}")
-	    private String accountAuthToken;
-	 
-	  @Value("${twilloSenderNumber}")
-	    private String twilloSenderNumber;
-	  
-	  @Autowired
-	  TwilioSmsSender TwilioSmsSender;
-
-	  @Autowired
-	   TwilioConfiguration twilioConfiguration;
-
 	
 	
 	@Override
@@ -132,17 +113,6 @@ public class LivreurServiceImp implements ILivreurService {
 		return l;
 	}
 	
-/*	public String NotifyLivreurBySMS(Livreur l) {
-	    
-	    Twilio.init(accountSID,accountAuthToken); 
-        Message message = Message.creator( 
-                new com.twilio.type.PhoneNumber("+21655251996"),  
-                "+19893941189", 
-                "Notif " +l +"a ete traiter  ")      
-            .create();     
-	 
-	return "Message Send Succesfully" ;
-}*/
 
 
 	
@@ -151,11 +121,6 @@ public class LivreurServiceImp implements ILivreurService {
 		Livraison liv =LivraisonRepo.findById(idLivraison).orElse(null);
 		Livreur l = LivreurRepo.findById(idLivreur).orElse(null);
 		l.setListLivraisons(null);
-	            PhoneNumber to = new PhoneNumber(l.getTelephone());
-	            PhoneNumber from = new PhoneNumber(twilioConfiguration.getTrialNumber());
-	            String message = ("Bonjour,\r\n" + l.getNom());
-	            MessageCreator creator = Message.creator(to, from, message);
-	            creator.create();
 		LivreurRepo.save(l);
 	}
 

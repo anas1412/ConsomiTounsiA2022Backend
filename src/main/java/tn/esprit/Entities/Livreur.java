@@ -52,12 +52,12 @@ public class Livreur implements Serializable{
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="livreur")
 	private List <Livraison> ListLivraisons;
 
-	@Override
+	/*@Override
     public String toString() {
         return "SmsRequest{" +
                 "phoneNumber= ..." + '\'' +
                 ", message='" + message + '\'' +
                 '}';
-    }
+    }*/
 	
 }

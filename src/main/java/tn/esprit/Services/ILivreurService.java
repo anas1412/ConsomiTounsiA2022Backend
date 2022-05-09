@@ -3,8 +3,6 @@ package tn.esprit.Services;
 import java.util.List;
 
 import tn.esprit.Entities.Livreur;
-import tn.esprit.Entities.SmsRequest;
-import tn.esprit.Entities.TwilioSmsSender;
 
 
 public interface ILivreurService {

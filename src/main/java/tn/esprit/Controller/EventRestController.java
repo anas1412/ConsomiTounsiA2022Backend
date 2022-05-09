@@ -143,4 +143,12 @@ public class EventRestController {
 		return eventInterface.getNombrePlacesEvent(idEvent);
 	}
 	
+	@PostMapping("/add-getEvent-user/{cagnotte-id}/{user-id}")
+	@ResponseBody
+	public Event addEventUser(@RequestBody Event e,@PathVariable("cagnotte-id")Long idCagnotte,@PathVariable("user-id")Long idUser) {
+		
+		Event event = eventInterface.addEvent(e, idCagnotte, idUser);
+		return event;
+	}
+	
 }
