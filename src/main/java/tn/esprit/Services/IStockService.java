@@ -1,6 +1,10 @@
 package tn.esprit.Services;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.mail.MessagingException;
+
 import tn.esprit.Entities.stock;
 
 public interface IStockService {
@@ -14,4 +18,8 @@ public interface IStockService {
 	stock updateStock (stock s);
 
 	stock retrieveStock (Long id);	
+	
+	List<stock> listAll(String keyword);
+	
+	void status() throws MessagingException, IOException;
 }

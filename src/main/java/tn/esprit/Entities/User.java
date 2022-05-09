@@ -1,5 +1,6 @@
 package tn.esprit.Entities;
 
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -7,6 +8,27 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import java.io.Serializable;
+
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+
+import javax.persistence.Entity;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 
 @Entity
 @Table(name = "users",

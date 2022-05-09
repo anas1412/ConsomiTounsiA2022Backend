@@ -1,6 +1,20 @@
 package tn.esprit.Entities;
 
+
 import javax.persistence.*;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+
+
+
 
 @Entity
 @Table(name = "roles")
@@ -12,6 +26,7 @@ public class Role {
 	@Enumerated(EnumType.STRING)
 	@Column(length = 20)
 	private ERole name;
+
 
 	public Role() {
 
@@ -37,3 +52,4 @@ public class Role {
 		this.name = name;
 	}
 }
+
