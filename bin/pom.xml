@@ -60,6 +60,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+<<<<<<< HEAD
 		
 			<!-- Tomcat for JSP rendering -->
 		<dependency>
@@ -152,6 +153,9 @@
 	</dependencies>
 	
 
+=======
+	</dependencies>
+>>>>>>> origin/panierBranch
 
 	<build>
 		<plugins>
