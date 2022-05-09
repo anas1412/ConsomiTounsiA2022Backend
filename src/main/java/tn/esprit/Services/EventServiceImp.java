@@ -104,7 +104,7 @@ public class EventServiceImp implements IEventService {
 	 
 	   
 	   eventRepository.save(e);
-	   mailSendService.sendEmail("ghassen.riahi@esprit.tn","Félicitation, votre évènement est ajouter avec succés"+" " +c.getLabelle(),"vérifier votre évènement");
+	   mailSendService.sendEmail("ghassen.riahi@esprit.tn","Félicitation, L'évènement "+c.getLabelle()+" est ajouter avec succés","Ajout d'évènement");
 	  
 	   return e;
 	}
@@ -120,7 +120,7 @@ public class EventServiceImp implements IEventService {
 		 
 		   
 		   eventRepository.save(e);
-		   mailSendService.sendEmail("ghassen.riahi@esprit.tn","Félicitation, votre évènement est ajouter avec succés"+c.getLabelle(),"vérifier votre évènement");
+		   mailSendService.sendEmail("ghassen.riahi@esprit.tn","Félicitation, L'évènement "+c.getLabelle()+" est ajouter avec succés , veuillez le consulter","Ajout d'un évènement");
 			
 		  
 		   return e;
@@ -219,7 +219,7 @@ public class EventServiceImp implements IEventService {
 		 
 		   
 		   eventRepository.save(e);
-		   mailSendService.sendEmail("ghassen.riahi@esprit.tn","Félicitation "+ e.getUser().getNom() +", votre évènement est ajouter avec succés"+" " +c.getLabelle(),"vérifier votre évènement");
+		   mailSendService.sendEmail("ghassen.riahi@esprit.tn","Félicitation , L'évènement "+c.getLabelle()+ " est ajouter avec succés par "+ e.getUser().getNom()+" , veuillez le consulter" ,"Ajout d un évènement");
 			
 		  
 		   return e;
