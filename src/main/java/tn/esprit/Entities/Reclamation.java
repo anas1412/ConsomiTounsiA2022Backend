@@ -1,7 +1,9 @@
 package tn.esprit.Entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,15 +29,18 @@ public class Reclamation implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idReclamation;
-	private Date DateRec;
-	private String Description;
-	private String Type;
+	private Long idReclamation;
+	private Date dateRec;
+	private String description;
+	private String type;
+	private String user_email;
+	private boolean etat;
 	@JsonIgnore
 	@ManyToOne
 	private Livraison livraison;
 	@JsonIgnore
 	@ManyToOne
 	private User user;
+
 
 }

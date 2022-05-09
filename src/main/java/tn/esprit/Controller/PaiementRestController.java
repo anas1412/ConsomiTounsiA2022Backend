@@ -23,7 +23,6 @@ import tn.esprit.Entities.paiement;
 import tn.esprit.Entities.panierProduit;
 import tn.esprit.Services.IPaiementService;
 import tn.esprit.Services.IPanierProduitService;
-import tn.esprit.helpers.ZXingHelper;
 
 
 @CrossOrigin(origins = "http://localhost:4200")

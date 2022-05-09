@@ -34,7 +34,6 @@ import tn.esprit.Services.IPaiementService;
 import tn.esprit.Services.IPanierProduitService;
 import tn.esprit.Services.factureServiceImpl;
 import tn.esprit.Services.panierProduitServiceImpl;
-import tn.esprit.helpers.ZXingHelper;
 
 
 @CrossOrigin(origins = "http://localhost:4200")

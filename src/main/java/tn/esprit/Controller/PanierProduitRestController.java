@@ -27,7 +27,7 @@ import tn.esprit.Entities.panierProduit;
 import tn.esprit.Entities.produit;
 import tn.esprit.Repository.UserRepository;
 import tn.esprit.Services.IPanierProduitService;
-import tn.esprit.helpers.ZXingHelper;
+
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
