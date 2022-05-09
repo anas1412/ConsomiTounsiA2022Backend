@@ -1,8 +1,10 @@
 package tn.esprit.Repository;
 
+
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -20,5 +22,6 @@ public interface produitRepository extends CrudRepository<produit, Long> {
 	@Query("SELECT p FROM produit p WHERE p.stock.idStock = ?1 ")
 	public List<produit> findByIdstock(Long key);
 	
+
 
 }

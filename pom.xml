@@ -23,6 +23,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		 </dependency>
+		 
 		
 		<dependency>
            <groupId>org.projectlombok</groupId>
@@ -62,11 +63,13 @@
 			<scope>test</scope>
 		</dependency>
 		
+
 		<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
 		
+
 			<!-- Tomcat for JSP rendering -->
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
@@ -92,6 +95,7 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		
 		<dependency>
             <groupId>com.lowagie</groupId>
@@ -104,6 +108,7 @@
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
+
 	
 	<!-- JSTL tag lib -->
 		<dependency>
@@ -117,6 +122,7 @@
 			<artifactId>standard</artifactId>
 			<version>1.1.2</version>
 		</dependency>
+
 
 
 
@@ -167,6 +173,25 @@
 		</dependency>
 
 
+
+
+		
+		<dependency>
+    <groupId>com.google.zxing</groupId>
+    <artifactId>core</artifactId>
+    <version>3.4.0</version>
+</dependency>
+		<dependency>
+    <groupId>com.google.zxing</groupId>
+    <artifactId>javase</artifactId>
+    <version>3.4.0</version>
+</dependency>
+	
+	
+	<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-mail</artifactId>
+</dependency>
 
 	</dependencies>
 	

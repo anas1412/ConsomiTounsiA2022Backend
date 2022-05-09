@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import tn.esprit.Entities.produit;
 import tn.esprit.Entities.stock;
 import tn.esprit.Entities.User;
@@ -22,6 +21,7 @@ public class produitServiceImpl implements IProduitServices {
 	@Autowired
 	stockRepository stockRepository;
 	@Autowired
+
 	UserRepository userrepo ;
 
 	@Override
@@ -36,12 +36,16 @@ public class produitServiceImpl implements IProduitServices {
 		produit produit = produitrepo.findById(p.getIdProduit()).get();
 
 
+
 		produit.setCategorieProduit(p.getCategorieProduit());
+
 		produit.setLibelleProduit(p.getLibelleProduit());
 		produit.setDescription(p.getDescription());
 		produit.setImage(p.getImage());
 		produit.setPrix(p.getPrix());
 		
+
+
 
 		produitrepo.save(p);
 	    return p;
@@ -55,6 +59,7 @@ public class produitServiceImpl implements IProduitServices {
 		return produitrepo.findById(id).orElse(null);
 	}
 	
+
 	@Override
 	public produit addProduit(produit p,Long idStock, Long idUser) {		
 		stock stock = stockRepository.findById(idStock).orElse(null);
@@ -73,11 +78,12 @@ public class produitServiceImpl implements IProduitServices {
 		p.setUser(u);
 		p.setDateCreation(new Date());
 		p.setImage(link);
+
 		produitrepo.save(p);
 	    return p;		
 	}
 	
-	
+
 
 	@Override
 	public void deleteProduit(Long id) {
@@ -85,6 +91,7 @@ public class produitServiceImpl implements IProduitServices {
 		produitrepo.deleteById(id);
 		
 	}
+
 
 
 	@Override

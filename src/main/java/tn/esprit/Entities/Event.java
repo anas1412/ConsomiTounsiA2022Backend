@@ -7,9 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,20 +34,25 @@ public class Event implements Serializable {/**
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idEvent;
 	String labelle;
-	String Description;
+	String description;
 	@Temporal(TemporalType.DATE)
 	Date dateDebut;
 	@Temporal(TemporalType.DATE)
 	Date DateFin;
-	String Lieu ;
+	String lieu ;
 	int etat;
 	String image;
+	private int nbparticipant; 
+	private int nbplace ;
 	
+	@JsonIgnore
 	@OneToOne
 	private Cagnotte cagnotte;
 	
-/*	@ManyToOne
-	private User user;
-	*/
+	@JsonIgnore
+	@ManyToOne
+	 User user;
+	
+	
 
 }

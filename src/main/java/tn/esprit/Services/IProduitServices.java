@@ -9,7 +9,9 @@ public interface IProduitServices {
 	List<produit> retrieveAllProduits();
 
 	
+
 	produit addProduit (produit p, Long idStock, Long idUser);
+
 
 	produit updateProduit (produit p);
 	
@@ -24,4 +26,5 @@ public interface IProduitServices {
 	void AssagnProductStock(Long idStock,Long idProduct) ;
 	
 	List<produit> findByIdstock (Long id);
+
 }

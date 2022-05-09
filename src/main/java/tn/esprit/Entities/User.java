@@ -1,5 +1,6 @@
 package tn.esprit.Entities;
 
+import java.io.Serializable;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,6 +22,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 
 import lombok.AllArgsConstructor;
@@ -37,6 +39,7 @@ import lombok.ToString;
 				@UniqueConstraint(columnNames = "email")
 		})
 public class User {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -108,4 +111,5 @@ public class User {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
+
 }

@@ -21,17 +21,27 @@ import lombok.extern.slf4j.Slf4j;
 import tn.esprit.Entities.produit;
 import tn.esprit.Entities.stock;
 import tn.esprit.Repository.produitRepository;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+import tn.esprit.Entities.stock;
 import tn.esprit.Repository.stockRepository;
 
 
 
+
 @Slf4j
+
 @Service
 public class stockServiceImpl implements IStockService{
 	
 	
 	@Autowired
 	stockRepository StockRepo;
+
 	@Autowired
 	produitRepository ProdRepo;
 	@Autowired
@@ -40,6 +50,7 @@ public class stockServiceImpl implements IStockService{
 	
 	
 	
+
 	@Override
 	public List<stock> retrieveAllStock() {
 		// TODO Auto-generated method stub
@@ -74,6 +85,7 @@ public class stockServiceImpl implements IStockService{
 	
 		return StockRepo.save(stock);
 	}
+
 
 	@Override
 	public List<stock> listAll(String keyword) {
@@ -140,8 +152,6 @@ public class stockServiceImpl implements IStockService{
 	        	}
 	        }
 	}
-	
-	
 	
 	
 }
