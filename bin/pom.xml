@@ -61,6 +61,9 @@
 			<scope>test</scope>
 		</dependency>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/pubBranch
 		
 			<!-- Tomcat for JSP rendering -->
 		<dependency>
@@ -100,6 +103,7 @@
 			<artifactId>standard</artifactId>
 			<version>1.1.2</version>
 		</dependency>
+<<<<<<< HEAD
 
 
 
@@ -156,6 +160,12 @@
 =======
 	</dependencies>
 >>>>>>> origin/panierBranch
+=======
+	
+	</dependencies>
+	
+
+>>>>>>> origin/pubBranch
 
 	<build>
 		<plugins>

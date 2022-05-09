@@ -1,15 +1,14 @@
 package tn.esprit.Entities;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -18,37 +17,31 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
-
-
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Commentaire implements Serializable{
+public class Reaction implements Serializable {
 	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private Long idCommentaire;
-	@NonNull
-	private String content;
-	
-	@NonNull
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date postedAt;
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date updatedAt;
+	private Long idReaction;
 
-	@ManyToOne
-	private Publication publication;
+	@NonNull 
+	@Enumerated(EnumType.STRING)
+	private ReactionType type;
+  
 	
 	@ManyToOne
 	private User user;
 	
-	
-	
-	
-	
+	@JsonIgnore
+	@ManyToOne
+	private Publication publication;
+
 }
