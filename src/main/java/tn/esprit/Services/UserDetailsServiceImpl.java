@@ -1,7 +1,5 @@
 package tn.esprit.Services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import tn.esprit.Entities.User;
 import tn.esprit.Repository.UserRepository;
+
+import java.util.List;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -39,9 +39,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public void updateUser(User user){
         userRepository.save(user);
     }
-    
+
     public List<User> getList(){
-        return    userRepository.findAll();}
-    
-    
+      return    userRepository.findAll();}
+
 }
