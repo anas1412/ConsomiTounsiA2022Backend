@@ -151,5 +151,9 @@ public class AuthController {
         userDetailsService.updateUser(user);
     }
 
+    @GetMapping("ListUser")
+    public List<User> getList() {
+        return userDetailsService.getList();
+    }
 
 }
