@@ -12,6 +12,7 @@ import tn.esprit.Entities.User;
 import tn.esprit.Entities.paiement;
 import tn.esprit.Entities.panierProduit;
 import tn.esprit.Entities.produit;
+import tn.esprit.Entities.stock;
 import tn.esprit.Repository.PaiementRepository;
 import tn.esprit.Repository.PanierProduitRepository;
 import tn.esprit.Repository.UserRepository;
@@ -45,7 +46,6 @@ public class paiementServiceImpl implements IPaiementService{
 		// TODO Auto-generated method stub
 		User u = UserRepo.findById(id).orElse(null);
 		List<panierProduit> produits = PanierProdRepo.findByUser(u);
-		
 		pa.setNature(pa.getNature());
 		pa.setSommetotal(pa.getSommetotal());
 		pa.setDate(new Date());

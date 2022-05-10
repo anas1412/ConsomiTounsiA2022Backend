@@ -59,7 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
-                .antMatchers("/api/test/**","/categorie/**","/rating/**","/qr/**","/Livraison/**","/publication/**","/don/**","/api/auth/**","/commentaire/**","/Livreur/**","/produit/**","/Reclamation/**","/profanity/**","/stock/**","/cagnotte/**","/facture/**","/paiement/**","/panierproduit/**","/event/**","/swagger-ui/**","/webjars/**","/v2/**","/swagger-resources/**").permitAll()
+                .antMatchers("/api/test/**","/categorie/**","/rating/**","/qr/**","/Livraison/**","/publication/**","/don/**","/api/auth/**","/commentaire/**","/Livreur/**","/produit/**","/Reclamation/**","/profanity/**","/stock/**","/cagnotte/**","/facture/**","/paiement/**","/panierproduit/**","/event/**","/swagger-ui/**","/webjars/**","/v2/**","/swagger-resources/**","/reaction/**").permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

@@ -22,7 +22,7 @@ public class BadwordsServiceImpl implements BadwordsService{
 	public void addBadwords(String filename) {
 		log.info("in add function");
 		try  { 
-		BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Nour\\Desktop\\pi\\ConsomiTounsiA2022\\src\\\\main\\resources\\"+filename));
+		BufferedReader br = new BufferedReader(new FileReader("D:\\Uni Life\\MERGE2\\ConsomiTounsiA2022\\src\\\\main\\resources\\"+filename));
          String s;                                              
          while ((s = br.readLine()) != null) {
              	log.info("in while loop");
@@ -35,7 +35,7 @@ public class BadwordsServiceImpl implements BadwordsService{
          }
          br.close();
          log.info("out of while loop");
-         File file = new File("C:\\Users\\Nour\\Desktop\\pi\\ConsomiTounsiA2022\\src\\\\main\\resources\\"+filename);
+         File file = new File("D:\\Uni Life\\MERGE2\\ConsomiTounsiA2022\\src\\\\main\\resources\\"+filename);
          log.info("File exist? "+file.exists());
          boolean isDeleted = file.delete();
          log.info("file is deleted ? : "+isDeleted);
