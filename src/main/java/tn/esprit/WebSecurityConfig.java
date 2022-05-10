@@ -59,7 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
-                .antMatchers("/api/test/**","/categorie/**","/Livraison/**","/Livreur/**","/produit/**","/Reclamation/**","/stock/**","/cagnotte/**","/facture/**","/paiement/**","/panierproduit/**","/event/**").permitAll()
+                .antMatchers("/api/test/**","/categorie/**","/rating/**","/qr/**","/Livraison/**","/publication/**","/don/**","/api/auth/**","/commentaire/**","/Livreur/**","/produit/**","/Reclamation/**","/profanity/**","/stock/**","/cagnotte/**","/facture/**","/paiement/**","/panierproduit/**","/event/**").permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
