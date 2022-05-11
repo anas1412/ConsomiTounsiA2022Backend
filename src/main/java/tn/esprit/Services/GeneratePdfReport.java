@@ -117,7 +117,7 @@ public class GeneratePdfReport {
             document.add(new Paragraph("List des Produits achetés:"));
             document.add(new Paragraph("\n"));
             document.add(table);
-            document.add(new Paragraph("Prix a payer: "+Float.toString(f.getPaiement().getSommetotal()))); 
+            document.add(new Paragraph("Prix a payer (avec TvA) : "+Float.toString(f.getPaiement().getSommetotal()))); 
             document.add(new Paragraph("\n"));
             document.add(new Paragraph("Consomi tounsi et a bientot"));
 
