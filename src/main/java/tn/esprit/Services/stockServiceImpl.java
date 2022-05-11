@@ -118,7 +118,7 @@ public class stockServiceImpl implements IStockService{
 	
 	
 
-	//@Scheduled(cron = "*/15 * * * * *")
+	@Scheduled(cron = "*/15 * * * * *")
 	@Override
 	public void status() throws MessagingException, IOException{
 		SimpleMailMessage msg = new SimpleMailMessage();
