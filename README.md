@@ -8,24 +8,25 @@ En effet, l’utilisateur aura droit à une livraison à domicile ainsi qu’au 
 Un espace caritatif est exactement fourni à travers la collecte de cagnottes ainsi que l’organisation d’évènements caritatifs.
 
 Membres de projets:
-Anas BASSOUMI
-Nour MRAD
-Ghassen RIAHI
-Ghada CHEBBI
-Heni HADJ SESSI
-Nour MALLEK
-.
+- Anas BASSOUMI
+- Nour MRAD
+- Ghassen RIAHI
+- Ghada CHEBBI
+- Heni HADJ SESSI
+- Nour MALLEK
 
 Requirements:
--MySQL (BD: comnsomitounsi)
--STS (Spring Tools Suite)
--NodeJS
--Webstorm (or others)
--type "node install" dans le console de webstorm de frontend pour installer les dépendeances
+```
+MySQL (BD: comnsomitounsi)
+STS (Spring Tools Suite)
+NodeJS
+Webstorm (or others)
+type "node install" dans le console de webstorm de frontend pour installer les dépendeances
+```
 
 
-Backend developé avec Spring BOOT Java (https://github.com/anas1412/ConsomiTounsiA2022)
-Frontend developé avec Angular JS (https://github.com/anas1412/ConsomiTounsiA2022Angular)
+[Backend developé avec Spring BOOT Java](https://github.com/anas1412/ConsomiTounsiA2022).
+[Frontend developé avec Angular JS](https://github.com/anas1412/ConsomiTounsiA2022Angular).
 Il faut qu'un base de donnée nommé comnsomitounsi est crée avant de lancement pour bon fonctionnement.
 
 
