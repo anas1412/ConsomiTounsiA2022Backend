@@ -23,12 +23,12 @@ NodeJS
 Webstorm (or others)
 type "node install" dans le console de webstorm de frontend pour installer les dépendeances
 ```
-
+#### Notes:
 
 [Backend developé avec Spring BOOT Java](https://github.com/anas1412/ConsomiTounsiA2022).
 
 [Frontend developé avec Angular JS](https://github.com/anas1412/ConsomiTounsiA2022Angular).
 
-Il faut qu'un base de donnée nommé comnsomitounsi est crée avant de lancement pour bon fonctionnement.
+NB: Il faut qu'un base de donnée nommé comnsomitounsi est crée avant de lancement pour bon fonctionnement.
 
 
